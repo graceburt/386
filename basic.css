@@ -1,0 +1,35 @@
+a.button{
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    font-size: 30px;
+    background-color: aliceblue;
+
+    color: orange;
+
+}
+
+.center{
+
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+
+}
+
+body {
+	background-color: aliceblue;
+}
+
+p {
+
+	font-family: Arial;
+
+}
+
+h1, h2, h3, h4 {
+
+	color: orange;
+
+}
