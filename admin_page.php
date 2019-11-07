@@ -55,7 +55,7 @@
 			echo"<form action = 'session_page.php' name=postlink method = 'post'>
 				<input type = 'hidden' name='s-date' value=".$sub_row['session_date'].">
 			<input type = 'hidden' name='si-name' value=".$row['name'].">
-				<input type = 'hidden' name='s-date' value=".$sub_row['session_time'].">";
+				<input type = 'hidden' name='s-time' value=".$sub_row['session_time'].">";
 			echo"<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;<a href=# onclick='submitPostLink()'>".$sub_row['session_date']."</a></td> <td style = 'float:right;'>".$sub_row['count(*)'];
 
 			echo"</td>";
