@@ -1,0 +1,78 @@
+
+body{
+	color: #F7C55A;
+	background-color:#800000;
+	margin: 100px;
+	margin-top: 60px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+	/* Create two equal columns that floats next to each other */
+	.column {
+	  float: left;
+	  width: 30%;
+	  padding: 10px;
+	  /*height: 300px; /* Should be removed. Only for demonstration */
+	  margin-left: 20px;
+	  border: solid;
+	  border-radius: 25px;
+	  background-color: white;
+	}
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	.sql_text{
+	color:black;
+	font-family:"Trebuchet MS", Helvetica, sans-serif;
+	}
+
+th, td {
+  padding: 5px;
+}
+table{
+	width:100%;
+	border-collapse:collapse;
+}
+a{
+	text-decoration:none;
+	color :#F7C55A;
+}
+
+h1, h2{
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+h1{
+	font-size: 60px;
+}
+
+h3, p{
+	font-family: 'Roboto', sans-serif;
+	color: black;
+	font-size: 40px;
+}
+
+p{
+	font-family: 'Roboto', sans-serif;
+	color: black;
+	font-size: 20px;
+}
+
+h4{
+	font-family: 'Roboto';
+	font-style: "light";
+	color: black;
+	font-size: 25px;
+}
+
+#container {
+  margin-top: 20px;
+  position: relative;
+}
+
