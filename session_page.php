@@ -95,24 +95,18 @@ mysqli_close($connection)
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
-		
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-	$r = mysqli_query($connection, $query);
-	echo"<table>
-		<thead>
-			<tr>
-				<th>SIL</th>
-				<th style = 'float:right;'><h3>OFFICE HOURS</h3></th> 
-			</tr>
-		</thead>";
-	while($row = mysqli_fetch_array($r))
+	$query ="select s1.name,student_count/SI_count as avg_attend, student_count, SI_count from (select student_ID,SI_ID, count(*) as student_count from Attends group by student_ID, SI_ID) by_student,(select SI_ID,count(*) as SI_count from Attends group by SI_ID)by_SI, Student s1 where s1.ID =by_student.student_ID";
+	$student_attendance = mysqli_query($connection, $query);
+	echo"<table>";
+	while($row = mysqli_fetch_array($student_attendance))
 	{
-		$office_hours_query = "select start_time-end_time from Office_Hours where SI_ID = ".$row['ID'];
-		$sub_r = mysqli_query($connection, $office_hours_query);		
+		if ($row['avg_attend'] >= .5)
+		{
 		echo"<tr>";
-		echo"<td class = sql_text>".$row['name']."</td> <td style = 'float:right;'>".$sub_r['start_time-end_time'];
+		echo"<td class = sql_text>".$row[0]."</td> <td style = 'float:right;'>".$row['student_count']."/".$row['SI_count'];
 			echo"</td>";
-			echo"</tr>";
+		echo"</tr>";
+		}
 	}
 echo"</table>";
 mysqli_close($connection)
