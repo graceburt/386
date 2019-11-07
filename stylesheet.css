@@ -21,6 +21,16 @@ body{
 	  border-radius: 25px;
 	  background-color: white;
 	}
+	.text_column {
+	  float: left;
+	  width: 30%;
+	  padding: 10px;
+	  /*height: 300px; /* Should be removed. Only for demonstration */
+	  margin-left: 20px;
+	  /*border: solid;
+	  border-radius: 25px;
+	  background-color: white;*/
+	}
 	/* Clear floats after the columns */
 	.row:after {
 	  content: "";
