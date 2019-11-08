@@ -44,7 +44,7 @@ if(isset($_POST['but_submit'])){
 
 		if($count > 0){
 			$_SESSION['uname'] = $uname;
-			header('Location: admin_page.html');
+			header('Location: admin_page.php');
 		}
 		else if($count1 > 0){
 			echo 'test';
