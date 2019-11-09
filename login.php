@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION['uname'])){
+	header("Location:admin_page.php");
+}
+?>
+
 <html>
 <div class = "container">
      <form method = "post" action = "">
@@ -20,6 +29,8 @@
 
 <?php
 include "config.php";
+error_reporting(E_ALL | E_WARNING | E_NOTICE);
+ini_set('display errors', TRUE);
 
 if(isset($_POST['but_submit'])){
 	$uname = mysqli_real_escape_string($con, $_POST['txt_uname']);
@@ -44,7 +55,9 @@ if(isset($_POST['but_submit'])){
 
 		if($count > 0){
 			$_SESSION['uname'] = $uname;
+			flush();
 			header('Location: admin_page.php');
+			//die('Should of redirected by now');
 		}
 		else if($count1 > 0){
 			echo 'test';
