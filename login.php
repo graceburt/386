@@ -57,7 +57,7 @@ if(isset($_POST['but_submit'])){
 			$_SESSION['uname'] = $uname;
 			flush();
 			header('Location: admin_page.php');
-			//die('Should of redirected by now');
+		        die('Should of redirected by now');
 		}
 		else if($count1 > 0){
 			echo 'test';
