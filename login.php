@@ -1,11 +1,3 @@
-<?php
-
-session_start();
-
-if(isset($_SESSION['uname'])){
-	header("Location:admin_page.php");
-}
-?>
 
 <html>
 <div class = "container">
@@ -28,14 +20,21 @@ if(isset($_SESSION['uname'])){
 
 
 <?php
-include "config.php";
+
+session_start();
+$con = mysqli_connect('localhost', 'mrovine1', 'mrovine1', 'SalisburySIDB');
+
+if(!$con){
+	die("Connection failed: " .mysqli_connect_error());
+}
 error_reporting(E_ALL | E_WARNING | E_NOTICE);
 ini_set('display errors', TRUE);
 
 if(isset($_POST['but_submit'])){
-	$uname = mysqli_real_escape_string($con, $_POST['txt_uname']);
-	$pword = mysqli_real_escape_string($con,$_POST['txt_pwd']);
-
+	//$uname = mysqli_real_escape_string($con, $_POST['txt_uname']);
+	//$pword = mysqli_real_escape_string($con,$_POST['txt_pwd']);
+	$uname = $_POST['txt_uname'];
+	$pword = $_POST['txt_pwd'];
 
 	//check if username and password are empty
 	if($uname !='' && $pword!=''){
@@ -54,14 +53,19 @@ if(isset($_POST['but_submit'])){
 		$count1 = $row1['cnt1'];
 
 		if($count > 0){
-			$_SESSION['uname'] = $uname;
-			flush();
+			$_SESSION['admin'] = true;
+			$_SESSION['username'] =$uname;
+			//flush();
+			
+			//echo'<meta http-equiv="refresh" content="0; URL=admin_page.php" />';
 			header('Location: admin_page.php');
+			die();
 		       // die('Should of redirected by now');
 		}
 		else if($count1 > 0){
 			echo 'test';
 			$_SESSION['uname'] =$uname;
+
 			header('Location: PC.php');
 		}
 

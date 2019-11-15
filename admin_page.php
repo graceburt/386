@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+session_start();
+if (!isset($_SESSION['admin']))
+{
 
+	echo'<meta http-equiv="refresh" content="0; URL=login.php" />';
+	exit();
+//header("location:login.php");
+}
+
+?>
 <!-- Load icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -24,7 +34,9 @@
 
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='#'><span>Home</span></a></li>
+   <li class='active'><a href='#'><span>Home</span></a></li>	
+   <li><a href='update_si.php'><span>Update SI's</span></a></li>
+   <li class ='last'><a href='edit_SIs.php'><span>Edit SI's</span></a></li>
    <li class='last' style = 'float:right;'><a href='logout.php'><span>LOG OUT</span></a></li>
 </ul>
 </div>
@@ -81,7 +93,7 @@
 		$office_hr_r = mysqli_query($connection, $office_hours_query);
 		$office_hr = mysqli_fetch_array($office_hr_r);		
 		echo"<tr>";
-		echo"<td style = 'padding-left:5%;'><strong>".$row['name']."</strong></td><td></td><td align = 'center'>";
+		echo"<td style = 'padding-left:5%;'><strong>".$row['name']."</strong></td><td align ='center'> </td><td align = 'center'>";
 		if( $office_hr['hours'] >=2)
 		{
 			echo " FULFILLED ";

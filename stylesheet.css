@@ -10,6 +10,17 @@ body{
   box-sizing: border-box;
 }
 
+.search-box{
+padding: 10px;
+padding-left:5%
+}
+
+.text-box{
+border: black;
+width: 100 px; 
+
+}
+
 	/* Create two equal columns that floats next to each other */
 	.column {
 	  float: left;
@@ -48,11 +59,6 @@ body{
 	::-webkit-scrollbar-thumb:hover {
 	background: #626262;  
 	}
-
-
-
-
-
 
 
 	.text_column {
@@ -125,4 +131,9 @@ h4{
   margin-top: 20px;
   position: relative;
 }
-
+form{
+margin-top:20px;
+}
+textarea{
+margin-bottom:15px;
+}
