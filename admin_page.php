@@ -26,6 +26,8 @@
   </div>
 </div>
 
+<a href= "logout.php">Logout</a>
+
 <div class="row">
   <div class="column">
      <?php
