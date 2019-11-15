@@ -36,10 +36,15 @@
 <h1>HELLO, Admin!</h1>
 <h3>This week's Supplemental Instruction Leaders...</h3>
 
+<<<<<<< HEAD
 <form class="search-box" action="action_page.php">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
+=======
+<a href= "logout.php">Logout</a>
+
+>>>>>>> 72fb96936266813b00fe4b8c5a35fb9469a556db
 <div class="row">
   <div class="column">
      <?php
