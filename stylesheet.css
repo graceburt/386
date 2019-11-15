@@ -1,6 +1,6 @@
 
 body{
-	color: #F7C55A;
+	color: black;
 	background-color:#dcdcdc;
 	margin: 100px;
 	margin-top: 60px;
@@ -20,9 +20,13 @@ body{
 	  /*height: 300px; /* Should be removed. Only for demonstration */
 	  margin-left: 20px;
 	  border: solid;
-	  border-radius: 25px;
+	  /*border-top:none;
+	  border-bottom-left-radius: 25px;
+	  border-bottom-right-radius:25px;
+	  */
+	  border-radius:25px;
 	  background-color: white;
-	  font-size:1.75vw;
+	  font-size:1.5vw;
 	  height:400px;
 	  overflow:auto;
 	}
@@ -53,12 +57,16 @@ body{
 
 	.text_column {
 	  float: left;
-	  width: 30%;
-	  padding: 10px;
+	  font-size:1.75vw;
+	  width: 95%;
+	  padding-left: 5%;
+	  padding-right: 5%;
 	  /*height: 300px; /* Should be removed. Only for demonstration */
 	  margin-left: 20px;
-	  /*border: solid;
-	  border-radius: 25px;
+	  border: solid;
+	  border-bottom: none;
+	  border-top-left-radius: 25px;
+	  border-top-right-radius: 25px;
 	  background-color: white;*/
 	}
 	/* Clear floats after the columns */

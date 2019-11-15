@@ -40,9 +40,22 @@
   <input type="text" placeholder="Search.." name="search">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
-
+<!--
 <div class="row">
-  <div class="column">
+  <div class="text_column">
+	<table>
+		<thead>
+			<tr>
+				<th align = 'center'>SI Leader</th>
+				<th align = 'center'>ATTENDANCE<br /> REPORTED</th> 
+				<th align = 'center'> OFFICE HOURS</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+-->
+<div class = 'column'>
+
      <?php
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
 	if($connection->connect_error) {
@@ -50,15 +63,16 @@
 	}
 		
 	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-	$r = mysqli_query($connection, $query);
 	echo"<table>
 		<thead>
 			<tr>
-				<th align = 'center'>SI Leader</th>
-				<th align = 'center'>ATTENDANCE<br /> REPORTED</th> 
-				<th alight = 'center'> OFFICE HOURS</th>
+			<th align = 'center'>SI Leader</th>
+			<th align = 'center' >ATTENDANCE <br/> REPORTED</th>
+			<th align = 'center' >OFFICE HOURS</th>
 			</tr>
 		</thead>";
+
+	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
 		$attendance_query = "select session_date, session_time, count(*) from Attends where SI_ID =".$row['ID']." group by session_date, session_time, SI_ID";
