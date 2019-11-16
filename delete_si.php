@@ -38,22 +38,6 @@ if (!isset($_SESSION['admin']))
 
 </header>
 
-<div align= justify>
-<form action   method = "POST">
-  SI ID:<br>
-  <input type = "text" name = "ID"><br>
-  SI Name:<br>
-  <input type = "text" name = "name"><br>
-  SI Password:<br> 
-  <input type = "text" name = "password"><br>
-  SI Email:<br>
-  <input type = "text" name = "email"><br>
-  
-  <input type = "submit" name = "Submit">
-</form>
-
-</div>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
