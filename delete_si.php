@@ -18,7 +18,7 @@ if (!isset($_SESSION['admin']))
       <ul class="drop">
         <li><a href="add_si.php">Add</a></li>
         <li><a href="delete_si.php">Delete</a></li>
-        <li><a href="#">Update</a></li>
+        <li><a href="update_si.php">Update</a></li>
       </ul>
     </li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
@@ -54,3 +54,32 @@ if (!isset($_SESSION['admin']))
 		}
 	</script>
 	<link rel="javascript" href="progress.js">
+
+
+ <div class = "column">
+	<form>
+	<h4>Delete SI Leader</h4>	
+     <?php
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+
+	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+
+	$r = mysqli_query($connection, $query);
+	while($row = mysqli_fetch_array($r))
+	{
+		echo "<p><input type = 'checkbox' name = '".$row['ID']."' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
+	}
+?>
+      
+        <input type = "submit" value = "Delete"> 
+	</form>
+
+
+
+
+  </div> 
+
+
