@@ -1,9 +1,11 @@
-
+header{
+	margin:0;
+}
 body{
 	color: black;
 	background-color:#dcdcdc;
-	margin: 100px;
-	margin-top: 60px;
+	margin-top: 75px;
+	font-size:1.5vw;
 }
 
 * {
@@ -23,22 +25,24 @@ width: 100 px;
 
 	/* Create two equal columns that floats next to each other */
 	.column {
-	  float: left;
-	  width: 95%;
-	  padding-left: 5%;
-	  padding-right:5%;
+	  float: right;
+	  width: 45%;
+	  padding-left: 10px;
+	  padding-right:10px;
 	  color:black;
 	  /*height: 300px; /* Should be removed. Only for demonstration */
-	  margin-left: 20px;
+	  margin-left: 10px;
+	  margin-right: 10px;
+	  margin-top:10px;
 	  border: solid;
+	  border-color:#800000;
 	  /*border-top:none;
 	  border-bottom-left-radius: 25px;
 	  border-bottom-right-radius:25px;
 	  */
 	  border-radius:25px;
 	  background-color: white;
-	  font-size:1.5vw;
-	  height:400px;
+	  height:75vh;
 	  overflow:auto;
 	}
 
@@ -64,16 +68,10 @@ width: 100 px;
 	.text_column {
 	  float: left;
 	  font-size:1.75vw;
-	  width: 95%;
-	  padding-left: 5%;
-	  padding-right: 5%;
+	  width: 45%;
 	  /*height: 300px; /* Should be removed. Only for demonstration */
 	  margin-left: 20px;
-	  border: solid;
-	  border-bottom: none;
-	  border-top-left-radius: 25px;
-	  border-top-right-radius: 25px;
-	  background-color: white;*/
+	  border: none;
 	}
 	/* Clear floats after the columns */
 	.row:after {
@@ -105,19 +103,20 @@ h1, h2{
 }
 
 h1{
-	font-size: 60px;
+	font-size: 3.5vw;
 }
 
 h3, p{
 	font-family: 'Roboto', sans-serif;
 	color: black;
-	font-size: 40px;
+	font-size: 2vw;
+	
 }
 
 p{
 	font-family: 'Roboto', sans-serif;
 	color: black;
-	font-size: 20px;
+	font-size: 2vw;
 }
 
 h4{
