@@ -133,6 +133,56 @@ h4{
 form{
 margin-top:20px;
 }
-textarea{
+input[type=text]{
 margin-bottom:15px;
+border-radius:10px;
+height:40px;
+padding-top:5px;
+font-size:20px;
 }
+
+
+
+.weekDays-selector input {
+  display: none!important;
+}
+
+.weekDays-selector input[type=radio] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 40px;
+  width: 35px;
+  margin-bottom:10px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=radio]:checked + label {
+  background: #2AD705;
+  color: #ffffff;
+}
+
+.time-selector input {
+  display: none!important;
+}
+
+.time-selector input[type=radio] + label {
+  display: inline-block;
+  border-radius: 50px;
+  background: #dddddd;
+  height: 40px;
+  width: 50px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.time-selector input[type=radio]:checked + label {
+  background: #2AD705;
+  color: #ffffff;
+}
+

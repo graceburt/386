@@ -52,14 +52,14 @@ if (!isset($_SESSION['admin']))
       <ul class="drop">
         <li><a href="add_si.php">Add</a></li>
         <li><a href="delete_si.php">Delete</a></li>
-        <li><a href="#">Update</a></li>
+        <li><a href="update_si.php">Update</a></li>
       </ul>
     </li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
       <ul class="drop">
-        <li><a href="#">Add</a></li>
-        <li><a href="#">Delete</a></li>
-        <li><a href="#">Update</a></li>
+        <li><a href="add_session.php">Add</a></li>
+        <li><a href="delete_session.php">Delete</a></li>
+        <li><a href="update_session.php">Update</a></li>
       </ul>
     </li>
 </ul>
