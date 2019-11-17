@@ -55,9 +55,12 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
+ <div>
+  <p>Select the SI's you wish to delete.</p>
+ </div>
 
  <div class = "column">
-	<form>
+	<form action method= "post">
 	<h4>Delete SI Leader</h4>	
      <?php
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
@@ -70,7 +73,7 @@ if (!isset($_SESSION['admin']))
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
-		echo "<p><input type = 'checkbox' name = '".$row['ID']."' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
+		echo "<p><input type = 'checkbox' name = 'SI[]' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
 	}
 ?>
       
@@ -82,4 +85,28 @@ if (!isset($_SESSION['admin']))
 
   </div> 
 
+<?php 
 
+	//Php code to be included
+
+	$student=$_POST['SI'];
+	$id = '';
+
+	$sql = "DELETE FROM Supplemental_Instruction_Leader WHERE ID = '$id'";
+	$t = mysqli_query($connection, $sql);
+
+	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['Delete'])){
+
+	if(empty($studet)){
+		echo("You didn't select any SI's to remove.");
+	}else{
+		$N = count($student);
+		echo("You want to remove the following SIs \n");
+		for($i=0; $i< $N; $i++){
+			$id = $student[$i];
+			
+		}
+	}
+	}
+
+?>
