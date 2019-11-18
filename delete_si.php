@@ -91,6 +91,7 @@ if (!isset($_SESSION['admin']))
 
 	$student=$_POST['SI'];
 	$id = '';
+	//echo("'.$Student[0].'";
 
 	$sql = "DELETE FROM Supplemental_Instruction_Leader WHERE ID = '$id'";
 	$t = mysqli_query($connection, $sql);
