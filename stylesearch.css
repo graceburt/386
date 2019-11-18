@@ -15,7 +15,7 @@
     vertical-align: middle;
 }
 
-input, button
+input, .searchbutton
 {
     color: #800000;
     font-family: Nunito;
@@ -78,7 +78,7 @@ input[type="text"]::placeholder
     padding-left: 35px;
 }
 
-button
+.searchbutton
 {
     position: relative;
     display: block;
@@ -103,7 +103,7 @@ button
     transition: 0.5s ease all;
 }
 
-button span
+.searchbutton span
 {
     position: absolute;
     top: 68px;
@@ -118,7 +118,7 @@ button span
     transition: 0.5s ease all;
 }
 
-button span:before, button span:after
+.searchbutton span:before, .searchbutton span:after
 {
     content: '';
     position: absolute;
@@ -153,20 +153,20 @@ button span:before, button span:after
             transform: rotateZ(0);
 }
 
-#s-cover:hover button span:before
+#s-cover:hover .searchbutton span:before
 {
     bottom: 11px;
     -webkit-transform: rotateZ(52deg);
             transform: rotateZ(52deg);
 }
 
-#s-cover:hover button span:after
+#s-cover:hover .searchbutton span:after
 {
     bottom: -11px;
     -webkit-transform: rotateZ(-52deg);
             transform: rotateZ(-52deg);
 }
-#s-cover:hover button span:before, #s-cover:hover button span:after
+#s-cover:hover .searchbutton span:before, #s-cover:hover .searchbutton span:after
 {
     right: -6px;
     width: 40px;
