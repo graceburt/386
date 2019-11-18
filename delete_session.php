@@ -105,7 +105,7 @@ if (isset($_POST['group1']))
     <div class="tb">
       <div class="td"><input type="text" placeholder="Search" required></div>
       <div class="td" id="s-cover">
-        <button type="submit">
+        <button class ="searchbutton" type="submit">
           <div id="s-circle"></div>
           <span></span>
         </button>
