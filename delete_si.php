@@ -13,7 +13,7 @@ if (!isset($_SESSION['admin']))
 
 <nav id="navigation">
   <ul class="links" style = "float:left;">
-  <li><a href="#">Home</a></li>
+  <li><a href="admin_page.php">Home</a></li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit SI<i class="arrow"></i></a>
       <ul class="drop">
         <li><a href="add_si.php">Add</a></li>
@@ -23,9 +23,9 @@ if (!isset($_SESSION['admin']))
     </li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
       <ul class="drop">
-        <li><a href="#">Add</a></li>
-        <li><a href="#">Delete</a></li>
-        <li><a href="#">Update</a></li>
+        <li><a href="add_si.php">Add</a></li>
+        <li><a href="delete_si.php">Delete</a></li>
+        <li><a href="update_si.php">Update</a></li>
       </ul>
     </li>
 </ul>

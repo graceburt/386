@@ -82,9 +82,9 @@ if (!isset($_SESSION['admin']))
     </li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
       <ul class="drop">
-        <li><a href="#">Add</a></li>
-        <li><a href="#">Delete</a></li>
-        <li><a href="#">Update</a></li>
+        <li><a href="add_session.php">Add</a></li>
+        <li><a href="delete_session.php">Delete</a></li>
+        <li><a href="update_session.php">Update</a></li>
       </ul>
     </li>
 </ul>
@@ -109,7 +109,7 @@ if (!isset($_SESSION['admin']))
     <div class="tb">
       <div class="td"><input type="text" placeholder="Search" required></div>
       <div class="td" id="s-cover">
-        <button type="submit">
+        <button class = "searchbutton" type="submit">
           <div id="s-circle"></div>
           <span></span>
         </button>
