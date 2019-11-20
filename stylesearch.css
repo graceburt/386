@@ -27,14 +27,10 @@ input, .searchbutton
 
 #cover
 {
-    top: 50%;
-    left: 0;
-    right: 0;
-    width: 175%;
     padding: 35px;
     background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px #800000;
+    border-radius: 30px;
+    box-shadow: 0 4px 20px #ff7c7c, 0 0 0 10px #800000;
     -webkit-transform: scale(0.6);
             transform: scale(0.6);
 }
@@ -48,8 +44,7 @@ input[type="text"]
 {
     width: 100%;
     height: 96px;
-    font-size: 60px;
-    line-height: 1;
+    font-size: 40px;
 }
 
 input[type="text"]::-webkit-input-placeholder
