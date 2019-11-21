@@ -55,8 +55,8 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
-<div class="column" style = "float:left;width:600px;height:200px">
-<div id="cover"  align = "left">
+<div class="container" style = "float:left;width:500px;height:200px">
+<div id="cover" style= "float:left" align = "left">
   <form method="get" action="">
     <div class="tb">
       <div class="td"><input type="text" placeholder="Search" required></div>
