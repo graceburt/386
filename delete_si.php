@@ -55,11 +55,25 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
- <div>
-  <p>Select the SI's you wish to delete.</p>
- </div>
+<div class="column" style = "float:left;width:600px;height:200px">
+<div id="cover"  align = "left">
+  <form method="get" action="">
+    <div class="tb">
+      <div class="td"><input type="text" placeholder="Search" required></div>
+      <div class="td" id="s-cover">
+        <button class = "searchbutton" type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
 
- <div class = "column">
+
+
+ <div class = "column" style="float:right">
 	<form action method= "post">
 	<h4>Delete SI Leader</h4>	
      <?php
