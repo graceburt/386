@@ -37,12 +37,10 @@
 session_start();
 if (!isset($_SESSION['admin']))
 {
-
 	echo'<meta http-equiv="refresh" content="0; URL=login.php" />';
 	exit();
 //header("location:login.php");
 }
-
 ?>
 
 <nav id="navigation">
@@ -73,18 +71,16 @@ if (!isset($_SESSION['admin']))
 </header>
 <body>
 
-<div class = 'column' style = 'padding:0;float:none; width: 97%; margin-top: 5%; background-color:#dcdcdc'>
 <?php
 if (!isset($_SESSION['added_students']))
 {
 	$_SESSION['added_students']=array();
 }
-
 ?>
-<div class='column' style = 'padding:0; text-align:center;float:left; width:30%;margin-left:15%; margin-right:0;height:75%;margin-top:7.5%; marign-bottom:7.5%;'>
-	<form action = "#" name = postlink method='post' style="padding-top:5%;">
+<div class='column' style = 'padding-bottom: 20px; text-align:center;float:left;'>
+	<form action = "#" name = postlink method='post'>
 
-	<h4 style = 'margin:0; padding:0;padding-bottom:25px;'>Add SI Leader</h4>	
+	<h4 style = 'padding-bottom:25px;'>Add SI Leader</h4>	
           <input type="text" id = "id-input" name='id-input'
                   rows = "1"
 		   style ='width:95%' placeholder = 'Student ID'></textarea>
@@ -110,17 +106,17 @@ if(strlen($_POST['id-input'])>0 && strlen($_POST['dept'])>0 && strlen($_POST['co
 {
 	array_push($_SESSION['added_students'], array("id"=>$_POST['id-input'], "dept"=> $_POST['dept'], "course"=>$_POST['course'], "sec" => $_POST['sec']));
 }
-
 if (count($_SESSION['added_students'])>0)
 {
-echo"<div class='column' style = 'padding:0; text-align:center;float:right; width:30%;margin-right:15%; margin-left:0;height:75%;margin-top:7.5%; marign-bottom:7.5%;'><h4><center> Added Leaders</center></h4>";
+echo"<div class='column' style = 'padding-bottom:20px; text-align:center;float:right;'><h4 style='padding-bottom: 25px;'><center> Added Leaders</center></h4>";
 	foreach($_SESSION['added_students'] as $student)
 	{
+		echo"<p>";
 		foreach($student as $att)
 		{
 			echo $att . " ";
 		}
-		echo"<br>";
+		echo"</p>";
 		
 	}
 	echo"</div>";

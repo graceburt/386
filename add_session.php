@@ -59,13 +59,13 @@ if (!isset($_SESSION['admin']))
 
 </header>
 
-<body>
+<body style = "padding: 70px;">
 
 <div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
-<div class = 'column' style='text-align:center; height: 300px;width:100%;' >
+<div class = 'column' style='text-align:center; height: auto; width:100%;' >
+<div class = 'colContent'>
 
-
-<h1>Choose a day and time</h1>
+<h3>Choose a day and time</h3>
 <div class="weekDays-selector">
 
 <form action = '#' name = postday method = 'post' style = "padding-top:10px; height:60px;">
@@ -136,7 +136,7 @@ echo '/>
 </div>
 
 
-<div class="time-selector">
+<div class="time-selector" style = "margin-right: 50px; margin-left: 50px;">
 <form action = '#' name = posttime method ='post'>
 <?php  
 if (isset($_POST["group3"]))
@@ -246,10 +246,11 @@ echo ' />
 ?>
 <form>
 </div>
+</div>
   </div>
 
-<div class = 'column' style = 'text-align:center; width: 100%; height:300px;'>
-<form action ="#" name = postlink method = 'post' style ="width:100%;" >
+<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
+<div class = "colContent"><form action ="#" name = postlink method = 'post' style ="width:100%;" >
 <?php
  if (isset($_POST['choose-si']))
  {
@@ -283,15 +284,16 @@ if (isset($_SESSION['add-si-id']))
 }
 else
 {
-	echo"<h3> Choose an SI to view their current sessions </h3>";
+	echo"<h3> Choose an SI to view their current sessions</h3>";
 }
 ?>
+</div>
 </div>
 </div>
 
 <div class ='text_column' style = "align:left; margin:2%; width:45%">
 
-<div id="cover" style = "align:left;margin-left:-15vw;">
+<div id="cover">
   <form method="get" action="">
     <div class="tb">
       <div class="td"><input type="text" placeholder="Search"></div>
@@ -305,8 +307,9 @@ else
   </form>
 </div>
 
- <div class = "column" style = 'width: 100%; float:left;margin-top: 5%; height:400px; text-align:center'>
-<h1>Choose an SI </h1>
+ <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
+
+<h3>Choose an SI </h3>
 	<form action = "#" name=postlink method ='post'>
      <?php
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
@@ -333,7 +336,6 @@ else
 ?>
 
 </form>
-
 
 </div>
 
