@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-
+<header>
 <?php
 session_start();
 if (!isset($_SESSION['admin']))
@@ -11,8 +8,36 @@ if (!isset($_SESSION['admin']))
 	exit();
 //header("location:login.php");
 }
+
 ?>
-<!-- Load icon library -->
+
+<nav id="navigation">
+  <ul class="links" style = "float:left;">
+  <li><a href="admin_page.php">Home</a></li>
+    <li class="dropdown"><a href="#" class="trigger-drop">Edit SI<i class="arrow"></i></a>
+      <ul class="drop">
+        <li><a href="add_si.php">Add</a></li>
+        <li><a href="delete_si.php">Delete</a></li>
+        <li><a href="update_si.php">Update</a></li>
+      </ul>
+    </li>
+    <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
+      <ul class="drop">
+        <li><a href="add_si.php">Add</a></li>
+        <li><a href="delete_si.php">Delete</a></li>
+        <li><a href="update_si.php">Update</a></li>
+      </ul>
+    </li>
+</ul>
+<ul class ="links">
+    <li><a href="logout.php">Log Out</a>
+    </li>
+  </ul>
+</nav>
+
+
+</header>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +46,7 @@ if (!isset($_SESSION['admin']))
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto:300,400&display=swap" rel="stylesheet"> 	
 	<link rel ="stylesheet" href="stylemenu.css">
 	<link rel ="stylesheet" href="stylesheet.css">
+	<link rel ="stylesheet" href="stylesearch.css">
 	<script language=javascript>
 		function submitPostLink()
 		{
@@ -29,69 +55,20 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
-</head>
-<body>
-
-<div id='cssmenu'>
-<ul>
-   <li><a href='admin_page.php'><span>Home</span></a></li>	
-   <li class ='active'><a href='update_si.php'><span>Update SI's</span></a></li>
-   <li class ='last'><a href='edit_SIs.php'><span>Edit SI's</span></a></li>
-   <li class='last' style = 'float:right;'><a href='logout.php'><span>LOG OUT</span></a></li>
-</ul>
+<div class="container" style = "float:left;width:500px;height:200px">
+<div id="cover" style= "float:left" align = "left">
+  <form method="get" action="">
+    <div class="tb">
+      <div class="td"><input type="text" placeholder="Search" required></div>
+      <div class="td" id="s-cover">
+        <button class = "searchbutton" type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
 </div>
 
 
-
-
-
-<div class = 'column' style = 'width: 45%; margin-top: 5%'>
-	<form>
-	<h4>Add SI Leader</h4>	
-          <textarea id = "name-input"
-                  rows = "1"
-                   placeholder = 'Name' style ='width:85%'></textarea>
-          <textarea id = "id-input"
-                  rows = "1"
-                   style ='width:85%' placeholder = 'Student ID'></textarea>
-          <textarea id = "id-input"
-                  rows = "1"
-                   style ='width:85%' placeholder = 'Email'></textarea>
-          <textarea id = "id-input"
-                  rows = "1"
-		   style ='width:85%' placeholder = 'Password'></textarea>
-
-	<input type = "submit" value="Add SI">
-	</form>
-
-  </div>
- <div class = "column" style = 'width: 45%; float:right;margin-top: 5%'>
-	<form>
-	<h4>Delete SI Leader</h4>	
-     <?php
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-
-	$r = mysqli_query($connection, $query);
-	while($row = mysqli_fetch_array($r))
-	{
-		echo "<p><input type = 'checkbox' name = '".$row['ID']."' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
-	}
-?>
-
-
-	</form>
-
-
-
-
-  </div> 
-
-</div>
-
-</body>
-</html>
