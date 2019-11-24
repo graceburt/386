@@ -27,29 +27,10 @@ if (!isset($_SESSION['admin']))
 		{
 		document.postlink.submit();
 		}
+</script>
 
-
-// JavaScript code 
-function search_si() { 
-    let input = document.getElementById('searchbar').value 
-	    input=input.toLowerCase();
 
     
-<?php
-echo"<div class = column>";
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-		
-	?>
-echo"</div>";
-} 
-
-
-
-
-	</script>
 	<link rel="javascript" href="progress.js">
 
 </head>
@@ -126,7 +107,7 @@ echo"</div>";
 <h3>This week's Supplemental Instruction Leaders...</h3>
 
 
-<div id="cover" style = "align:left;margin-left:-15vw;">
+<div id="cover" style = "align:left">
   <form method="POST" action="#">
     <div class="tb">
       <div class="td"><input id="searchbar"  type="text"  name = "search" placeholder="Search" required></div>

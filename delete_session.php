@@ -101,9 +101,9 @@ if (isset($_POST['group1']))
 
 
 <div id="cover" style = "align:left;margin-left:-15vw;">
-  <form method="get" action="">
+  <form method="POST" action="#">
     <div class="tb">
-      <div class="td"><input type="text" placeholder="Search" required></div>
+      <div class="td"><input type="text" name ='search' placeholder="Search" required></div>
       <div class="td" id="s-cover">
         <button class ="searchbutton" type="submit">
           <div id="s-circle"></div>
@@ -122,9 +122,14 @@ if (isset($_POST['group1']))
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
-
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-
+	if(isset($_POST['search']))
+	{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
+	}
+	else
+	{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+	}
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{

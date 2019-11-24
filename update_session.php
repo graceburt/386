@@ -322,9 +322,9 @@ echo ' />
 <div class ='text_column' style = "align:left; margin:2%; width:45%">
 
 <div id="cover" style = "align:left;margin-left:-15vw;">
-  <form method="get" action="">
+  <form method="POST" action="#">
     <div class="tb">
-      <div class="td"><input type="text" placeholder="Search"></div>
+      <div class="td"><input type="text" name = 'search' placeholder="Search"></div>
       <div class="td" id="s-cover">
         <button class = 'searchbutton' type="submit">
           <div id="s-circle"></div>
@@ -343,9 +343,14 @@ echo ' />
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
+	if(isset($_POST['search']))
+	{
 
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-
+	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
+	}
+	else{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+	}
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
