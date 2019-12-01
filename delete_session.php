@@ -86,8 +86,6 @@ if (isset($_POST['group1']))
 
 	
 	</form>
-<?php
-?>
 
 
 
@@ -98,15 +96,10 @@ if (isset($_POST['group1']))
   </div> 
 
 <div class ='text_column' style = "align:left;">
-
-
-<<<<<<< HEAD
 <div id="cover">
   <form method="get" action="">
-=======
 <div id="cover" style = "align:left;margin-left:-15vw;">
   <form method="POST" action="#">
->>>>>>> 0c7a53b865fd716a4e80fc23016453dc3d766299
     <div class="tb">
       <div class="td"><input type="text" name ='search' placeholder="Search" required></div>
       <div class="td" id="s-cover">
