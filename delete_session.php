@@ -87,7 +87,8 @@ if (isset($_POST['group1']))
 	
 	</form>
 
-
+<?php
+?>
 
 
 
