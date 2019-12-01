@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,18 +6,14 @@
 session_start();
 if (!isset($_SESSION['admin']))
 {
-
 	echo'<meta http-equiv="refresh" content="0; URL=login.php" />';
 	exit();
 //header("location:login.php");
 }
-
 ?>
 <!-- Load icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto:300,400&display=swap" rel="stylesheet"> 	
 	<link rel ="stylesheet" href="stylemenu.css">
@@ -29,7 +26,6 @@ if (!isset($_SESSION['admin']))
 		}
 	</script>
 	<link rel="javascript" href="progress.js">
-
 </head>
 <header>
 <nav id="navigation">
@@ -55,16 +51,11 @@ if (!isset($_SESSION['admin']))
     </li>
   </ul>
 </nav>
-
-
 </header>
-
 <body>
-
 <div class = 'column' style='text-align:center;' >
 <form action = "#" name = postlink method='post' style="padding-top:5%;">
 <?php
-
 $_SESSION['sil-id']= $_POST['group1'];
 if (isset($_POST['group1']))
 {
@@ -83,24 +74,19 @@ if (isset($_POST['group1']))
 	//echo $_SESSION['sil-id'];
 }
 ?>
-
 	
 	</form>
-
 <?php
 ?>
-
-
-
-
-
   </div> 
-
 <div class ='text_column' style = "align:left;">
+
+
+<div id="cover" style = "align:left;margin-left:-15vw;">
 <div id="cover">
-  <form method="POST" action="#">
+  <form method="get" action="">
     <div class="tb">
-      <div class="td"><input type="text" name ='search' placeholder="Search" required></div>
+      <div class="td"><input type="text" placeholder="Search" required></div>
       <div class="td" id="s-cover">
         <button class ="searchbutton" type="submit">
           <div id="s-circle"></div>
@@ -110,7 +96,6 @@ if (isset($_POST['group1']))
     </div>
   </form>
 </div>
-
  <div class = "column" style = 'width: 100%; float:left;margin-top: 5%; height:400px'>
 <h1>Choose an SI </h1>
 	<form action = "#" name = postlink method='post' style="padding-top:5%;">
@@ -119,14 +104,7 @@ if (isset($_POST['group1']))
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
-	if(isset($_POST['search']))
-	{
-		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
-	}
-	else
-	{
-		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-	}
+	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
@@ -142,19 +120,14 @@ if (isset($_POST['group1']))
 	}
 	echo $_SESSION['sil-id'];
 ?>
-
 	
 	</form>
 <?php
 ?>
 </div>
-
 </body>
 </html>
 </div>
-
 </body>
 </html>
-
-
 
