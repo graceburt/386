@@ -1,76 +1,25 @@
-header{
-	margin:0;
-}
+
 body{
-	color: black;
-	background-color:#dcdcdc;
-	margin-top: 75px;
-	font-size:1.5vw;
+	color: #F7C55A;
+	background-color:#800000;
+	margin: 100px;
+	margin-top: 60px;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.search-box{
-padding: 10px;
-padding-left:5%
-}
-
-.text-box{
-border: black;
-width: 100 px; 
-
-}
-
 	/* Create two equal columns that floats next to each other */
 	.column {
-	  float: right;
-	  width: 45%;
-	  padding-left: 10px;
-	  padding-right:10px;
-	  color:black;
-	  margin: 10px;
-	  border: solid;
-	  border-color:#800000;
-	  border-radius:25px;
-	  background-color: white;
-	  height:75vh;
-	  overflow: hidden;
-	}
-
-	.colContent{
-		padding: 20px;
-		overflow-x: hidden;
-  		overflow-y: scroll;
-	}
-
-	/* Scrollbar styles */
-	::-webkit-scrollbar {
-	width: 12px;
-	height: 12px;
-	}
-
-	::-webkit-scrollbar-track {
-	}
-
-	::-webkit-scrollbar-thumb {
-	background: #7a7a7a;  
-	border-radius: 10px;
-	}
-
-	::-webkit-scrollbar-thumb:hover {
-	background: #626262;  
-	}
-
-
-	.text_column {
 	  float: left;
-	  font-size:1.75vw;
-	  width: 45%;
+	  width: 30%;
+	  padding: 10px;
 	  /*height: 300px; /* Should be removed. Only for demonstration */
 	  margin-left: 20px;
-	  border: none;
+	  border: solid;
+	  border-radius: 25px;
+	  background-color: white;
 	}
 	/* Clear floats after the columns */
 	.row:after {
@@ -82,9 +31,7 @@ width: 100 px;
 	color:black;
 	font-family:"Trebuchet MS", Helvetica, sans-serif;
 	}
-	.indent{
-		padding-left:10%;
-	}
+
 th, td {
   padding: 5px;
 }
@@ -102,20 +49,19 @@ h1, h2{
 }
 
 h1{
-	font-size: 3.5vw;
+	font-size: 60px;
 }
 
 h3, p{
 	font-family: 'Roboto', sans-serif;
 	color: black;
-	font-size: 2vw;
-	
+	font-size: 40px;
 }
 
 p{
 	font-family: 'Roboto', sans-serif;
 	color: black;
-	font-size: 2vw;
+	font-size: 20px;
 }
 
 h4{
@@ -129,73 +75,4 @@ h4{
   margin-top: 20px;
   position: relative;
 }
-form{
-margin-top:20px;
-}
-input[type=text]{
-margin-bottom:15px;
-border-radius:10px;
-height:40px;
-padding-top:5px;
-font-size:20px;
-}
 
-
-
-.weekDays-selector input {
-  display: none!important;
-}
-
-.weekDays-selector input[type=radio] + label {
-  display: inline-block;
-  border-radius: 6px;
-  background: #dddddd;
-  height: 40px;
-  width: 35px;
-  margin-bottom:10px;
-  margin-right: 3px;
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.weekDays-selector input[type=radio]:checked + label {
-  background: #2AD705;
-  color: #ffffff;
-}
-
-.time-selector input {
-  display: none!important;
-}
-
-.time-selector input[type=radio] + label {
-  display: inline-block;
-  border-radius: 50px;
-  background: #dddddd;
-  height: 40px;
-  width: 50px;
-  margin-right: 3px;
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.time-selector input[type=radio]:checked + label {
-  background: #2AD705;
-  color: #ffffff;
-}
-.button1 {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
