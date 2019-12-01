@@ -81,7 +81,7 @@ if(isset($_POST['group']))
  }
 if (isset($_SESSION['add-si-id']))
 {
-	while($row = mysqli_fetch_array($r))
+	/*while($row = mysqli_fetch_array($r))
 	{
 		echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' value = '".$row['ID']."'";
 		if (isset($_SESSION['sil-id']))
@@ -92,8 +92,7 @@ if (isset($_SESSION['add-si-id']))
 			}
 		}
 		echo">".$row['name']."  (ID: ".$row['ID'].")</p>";
-	}
-	echo $_SESSION['sil-id'];
+}*/
 
 	
 
@@ -112,16 +111,17 @@ if (isset($_SESSION['add-si-id']))
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
-		if (isset($_SESSION['sil-id1']))
+		if (isset($_SESSION['add-si-id']))
 		{
-			if ($row['ID']== $_SESSION['sil-id1'] and isset($_SESSION['day']) and isset($_SESSION['time']))
+			if ($row['ID']== $_SESSION['add-si-id'] and isset($_SESSION['day']) and isset($_SESSION['time']))
 			{
 		echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' value = '".$row['ID']."' checked><p style ='color#800000; font-weight:bold;'>".$_SESSION['day']." at ".$_SESSION['time'].":00:00 </p>";
 			}
 			else
 			{
 
-				echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' checked value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
+		//		echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' checked value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
+		echo "<p style ='color#800000; font-weight:bold;'><input type = 'radio' name = 'group1' onclick='this.form.submit()' value = '".$row['ID']."'>".$row['session_weekday']." at ".$row['session_time']." </p>";
 			}
 		}
 		else
@@ -322,9 +322,9 @@ echo ' />
 <div class ='text_column' style = "align:left; margin:2%; width:45%">
 
 <div id="cover" style = "align:left;margin-left:-15vw;">
-  <form method="get" action="">
+  <form method="POST" action="#">
     <div class="tb">
-      <div class="td"><input type="text" placeholder="Search"></div>
+      <div class="td"><input type="text" name = 'search' placeholder="Search"></div>
       <div class="td" id="s-cover">
         <button class = 'searchbutton' type="submit">
           <div id="s-circle"></div>
@@ -343,9 +343,14 @@ echo ' />
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
+	if(isset($_POST['search']))
+	{
 
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-
+	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
+	}
+	else{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+	}
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{

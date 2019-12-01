@@ -55,11 +55,53 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
- <div>
-  <p>Select the SI's you wish to delete.</p>
- </div>
+<div class="text_column" style = "float:left">
+<div class="container" style = "float:left; width:100%; height:200px">
+<div id="cover" style= "float:left" align = "left">
+  <form method="POST" action="#">
+    <div class="tb">
+      <div class="td"><input type="text"  name = 'search' placeholder="Search" required></div>
+      <div class="td" id="s-cover">
+        <button class = "searchbutton" type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
 
- <div class = "column">
+<?php
+if(isset($_POST['search']))
+{
+echo' <div class = "column" style="width:100%; height:300px;">
+	<form action method= "post">
+	<h4>Delete SI Leader</h4>';	
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+
+	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
+
+	$r = mysqli_query($connection, $query);
+	while($row = mysqli_fetch_array($r))
+	{
+		echo "<p><input type = 'checkbox' name = 'SI[]' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
+	}
+      
+     echo'   <input type = "submit" value = "Delete"> 
+	</form>
+  </div> ';
+}
+?>
+
+
+</div>
+
+
+ <div class = "column" style="float:right">
 	<form action method= "post">
 	<h4>Delete SI Leader</h4>	
      <?php
