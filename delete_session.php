@@ -100,7 +100,7 @@ if (isset($_POST['group1']))
 <div class ='text_column' style = "align:left;">
 
 
-<div id="cover" style = "align:left;margin-left:-15vw;">
+<div id="cover">
   <form method="POST" action="#">
     <div class="tb">
       <div class="td"><input type="text" name ='search' placeholder="Search" required></div>
