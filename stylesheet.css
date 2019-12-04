@@ -3,7 +3,7 @@ header{
 }
 body{
 	color: black;
-	background-color:#dcdcdc;
+	background-color: white;
 	margin-top: 75px;
 	font-size:1.5vw;
 }
@@ -98,29 +98,22 @@ a{
 }
 
 h1, h2{
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1{
 	font-size: 3.5vw;
 }
 
-h3, p{
-	font-family: 'Roboto', sans-serif;
-	color: black;
-	font-size: 2vw;
-	
-}
 
 p{
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Catamaran', sans-serif;
 	color: black;
 	font-size: 2vw;
 }
 
 h4{
-	font-family: 'Roboto';
-	font-style: "light";
+	
 	color: black;
 	font-size: 25px;
 }
@@ -198,4 +191,64 @@ font-size:20px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.container {
+  display: grid;
+  grid-gap: 10px;
+  margin: 50px;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: 250px;
+}
+.containertext {
+  position: relative;
+}
+.cell {
+  color: black;
+  padding: 5px;
+  font-size: 3vw;
+  text-align:center;
+}
+.cell-sessions-1{
+  background-color: #b5b5b5;
+}
+.cell-sessions-2{
+  background-color: #b5b5b5;
+}
+.cell-sessions-3{
+  background-color: #b5b5b5;
+}
+.cell-sessions-1:hover {
+  opacity: 1;
+}
+.cell-sessions-2:hover {
+  opacity: 1;
+}
+.cell-sessions-3:hover {
+  opacity: 1;
+}
+.middle{
+  transition: .5s ease;
+  opacity: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.cell-sessions-1:hover .middle{
+  opacity: 1;
+}
+.cell-sessions-2:hover .middle{
+  opacity: 1;
+}
+.cell-sessions-3:hover .middle{
+  opacity: 1;
+}
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
 }
