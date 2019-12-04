@@ -61,26 +61,45 @@ if (!isset($_SESSION['admin']))
 
 <body>
 
+<?php
+	if(isset($_POST["deleteSession"]))
+	{
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$delquery = "delete from Session where SI_ID = '".$_SESSION['sil-id']."' and session_weekday = '".$_POST['session-to-del']."'";
+	$dq = mysqli_query($connection, $delquery);
+	
+	}	
+?>
 <div class = 'column' style='text-align:center;' >
 <form action = "#" name = postlink method='post' style="padding-top:5%;">
 <?php
-
-$_SESSION['sil-id']= $_POST['group1'];
-if (isset($_POST['group1']))
+	if(isset($_POST['group1']))
+	{
+		$_SESSION['sil-id']= $_POST['group1'];
+	}
+if (isset($_SESSION['sil-id']))
 {
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
 		
-	$query = "select session_weekday,session_time from Session where SI_ID = ".$_POST['group1'];
+	$query = "select session_weekday,session_time from Session where SI_ID = ".$_SESSION['sil-id'];
 	
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
-		echo "<p><input type = 'checkbox' name = 'session-to-del' onclick='this.form.submit()' value = '".$row['session_weekday']."'>".$row['session_weekday']." at  ".$row['session_time']."</p>";
+		echo "<p><input type = 'checkbox' name = 'session-to-del' value = '".$row['session_weekday']."'>".$row['session_weekday']." at  ".date('h:i a',strtotime($row['session_time']))."</p>";
 	}
 	//echo $_SESSION['sil-id'];
+		echo"<button class ='button1' name = 'deleteSession' value = 'del'>Delete Session</button>";
+}
+else
+{
+	echo "Select an SI to view their sessions";
 }
 ?>
 
@@ -143,7 +162,6 @@ if (isset($_POST['group1']))
 		}
 		echo">".$row['name']."  (ID: ".$row['ID'].")</p>";
 	}
-	echo $_SESSION['sil-id'];
 ?>
 
 	

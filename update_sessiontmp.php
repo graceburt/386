@@ -59,21 +59,93 @@ if (!isset($_SESSION['admin']))
 
 </header>
 
-<body style = "padding: 70px;">
-
-<div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
-<div class = 'column' style='text-align:center; height: auto; width:100%;' >
-<div class = 'colContent'>
-
-<h3>Choose a day and time</h3>
-<div class="weekDays-selector">
-
-<form action = '#' name = postday method = 'post' style = "padding-top:10px; height:60px;">
+<body>
 <?php
+if (isset($_POST["group3"]))
+{
+	$_SESSION["time"] = $_POST["group3"];
+}
 if(isset($_POST['group']))
 {
 	$_SESSION['day'] = $_POST['group'];
 }	
+?>
+<div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
+<div class = 'column' style = 'text-align:center; width: 100%; height:300px;'>
+<form action ="#" name = postlink method = 'post' style ="width:100%;" >
+<?php
+
+ if (isset($_POST['choose-si']))
+ {
+	$_SESSION['add-si-id'] = $_POST['choose-si'];
+ }
+if (isset($_SESSION['add-si-id']))
+{
+	/*while($row = mysqli_fetch_array($r))
+	{
+		echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' value = '".$row['ID']."'";
+		if (isset($_SESSION['sil-id']))
+		{
+			if ($row['ID']== $_SESSION['sil-id'])
+			{
+				echo " checked";
+			}
+		}
+		echo">".$row['name']."  (ID: ".$row['ID'].")</p>";
+}*/
+
+	
+
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+		
+	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
+	$nr = mysqli_query($connection, $namequery);
+	$name_row = mysqli_fetch_array($nr); 
+
+	echo "<h3>".$name_row['name']." 's Sessions </h3>";
+	$query = "select session_weekday,session_time from Session where SI_ID = ".$_SESSION['add-si-id'];
+	
+	$r = mysqli_query($connection, $query);
+	while($row = mysqli_fetch_array($r))
+	{
+		if (isset($_SESSION['add-si-id']))
+		{
+			if ($row['ID']== $_SESSION['add-si-id'] and isset($_SESSION['day']) and isset($_SESSION['time']))
+			{
+		echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' value = '".$row['ID']."' checked><p style ='color#800000; font-weight:bold;'>".$_SESSION['day']." at ".$_SESSION['time'].":00:00 </p>";
+			}
+			else
+			{
+
+		//		echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' checked value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
+		echo "<p style ='color#800000; font-weight:bold;'><input type = 'radio' name = 'group1' onclick='this.form.submit()' value = '".$row['ID']."'>".$row['session_weekday']." at ".$row['session_time']." </p>";
+			}
+		}
+		else
+		{
+			echo "<p><input type = 'radio' name = 'group1' onclick='this.form.submit()' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
+		}
+	
+	}
+	//echo $_SESSION['sil-id'];
+}
+else
+{
+	echo"<h3> Choose an SI to view their current sessions </h3>";
+}
+?>
+</div>
+<div class = 'column' style='text-align:center; height: 300px;width:100%;' >
+
+
+<h2>Choose a new day and time</h2>
+<div class="weekDays-selector">
+
+<form action = '#' name = postday method = 'post' style = "padding-top:10px; height:60px;">
+<?php
 echo'
   <input type="radio" id="weekday-mon" class="weekday" name="group" onclick="this.form.submit()" value = "Monday"';
 if($_SESSION["day"] == 'Monday')
@@ -136,22 +208,9 @@ echo '/>
 </div>
 
 
-<div class="time-selector" style = "margin-top:20px; width: 100%;">
+<div class="time-selector">
 <form action = '#' name = posttime method ='post'>
 <?php  
-if (isset($_POST["group3"]))
-{
-	$_SESSION["time"] = $_POST["group3"];
-}
-if (isset($_POST["ampm"]))
-{
-	$_SESSION["ampm"]=$_POST["ampm"];
-}
-if(isset($_POST['half']))
-{
-	$_SESSION['half']=$_POST['half'];
-}
-
 echo'
   <input type="radio" id="1oclk" class="time" name="group3" onclick="this.form.submit()" value ="1"';
  if($_SESSION['time'] =='1')
@@ -255,129 +314,15 @@ echo ' />
 ?>
 </form>
 </div>
-<div class="time-selector" style = " width: 100%; height:75px;">
-<form action ="#" name = postampm method = 'post' style ="width:45%; float:right; margin-right:10px; margin-bottom:0; height:50px;" >
-<?php
- echo'
- <input type = "radio" id="am" class ="time" name ="ampm" onclick="this.form.submit()" value="am"';
- if($_SESSION['ampm']=='am')
- {
-	echo " checked ";
- }
- echo ' />
- <label for="am">am</label>
- <input type = "radio" id="pm" class ="time" name ="ampm" onclick="this.form.submit()" value="pm"';
- if($_SESSION['ampm']=='pm')
- {
-	echo " checked ";
- }
- echo ' />
- <label for="pm">pm</label>';
-?>
-</form>
-<form action ="#" name = post30 method = 'post' style ="width:45%; float:left; margin-right:10px;height:50px;" >
-<?php
- echo'
- <input type = "radio" id="half" class ="time" name ="half" onclick="this.form.submit()" value="half"';
- if($_SESSION['half']=='half')
- {
-	echo " checked ";
- }
- echo ' />
- <label for="half">:30</label>
- <input type = "radio" id="nothalf" class ="time" name ="half" onclick="this.form.submit()" value="nothalf"';
- if($_SESSION['half']=='nothalf')
- {
-	echo " checked ";
- }
- echo ' />
- <label for="nothalf">:00</label>';
-
-?>
-</div>
-</div>
   </div>
-<?php
-	if(isset($_POST["addSession"]))
-	{
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-	$addquery = "insert into Session (session_time, SI_ID, session_weekday) values('".$_SESSION['date']."', '".$_SESSION['add-si-id']."', '".$_SESSION['day']."')";
-	$aq = mysqli_query($connection, $addquery);
 
-	}	
-?>
-<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
-<div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
-<?php
 
- if (isset($_POST['choose-si']))
- {
-	$_SESSION['add-si-id'] = $_POST['choose-si'];
- }
-if (isset($_SESSION['add-si-id']))
-{
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
-	$nr = mysqli_query($connection, $namequery);
-	$name_row = mysqli_fetch_array($nr); 
 
-	echo "<h3>".$name_row['name']." 's Sessions </h3>";
-	$query = "select session_weekday,session_time from Session where SI_ID = ".$_SESSION['add-si-id'];
-	
-	$r = mysqli_query($connection, $query);
-	while($row = mysqli_fetch_array($r))
-	{
-		echo "<p>".$row['session_weekday']." at  ". date('h:i a ', strtotime($row['session_time']))."</p>";
-	}
-	//echo $_SESSION['sil-id'];
-	if(isset($_SESSION['day']) and isset($_SESSION['time'])and isset($_SESSION['half']) and isset($_SESSION['ampm']))
-	{
-		if($_SESSION['ampm']=='pm')
-		{
-			$t = $_SESSION['time']+12;
-		}
-		else
-		{
-			$t = $_SESSION['time'];
-
-		}
-		if($t == 12 or $t==24)
-		{
-			$t = $t - 12;
-		}	
-		if($_SESSION['half']=='nothalf')
-		{
-			$_SESSION['date'] = $t.':00:00';
-		}
-		else
-		{
-			$_SESSION['date'] = $t.':30:00';
-
-		}
-		echo"<p style = 'color:#800000; font-weight:bold;'>".$_SESSION['day']." at ".date('h:i a',strtotime($_SESSION['date']))."</p>";
-		echo"<button class ='button1' name = 'addSession' value = 'add'>Add Session</button>";
-	}
-}
-else
-{
-	echo"<h3> Choose an SI to view their current sessions</h3>";
-}
-?>
-</form>
 </div>
-</div>
-</div>
-
 <div class ='text_column' style = "align:left; margin:2%; width:45%">
 
-<div id="cover">
-  <form method="post" action="#">
+<div id="cover" style = "align:left;margin-left:-15vw;">
+  <form method="POST" action="#">
     <div class="tb">
       <div class="td"><input type="text" name = 'search' placeholder="Search"></div>
       <div class="td" id="s-cover">
@@ -390,9 +335,8 @@ else
   </form>
 </div>
 
- <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
-
-<h3>Choose an SI </h3>
+ <div class = "column" style = 'width: 100%; float:left;margin-top: 5%; height:400px; text-align:center'>
+<h1>Choose an SI </h1>
 	<form action = "#" name=postlink method ='post'>
      <?php
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
@@ -401,10 +345,11 @@ else
 	}
 	if(isset($_POST['search']))
 	{
+
 	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
 	}
 	else{
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
 	}
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
@@ -423,6 +368,7 @@ else
 ?>
 
 </form>
+
 
 </div>
 
