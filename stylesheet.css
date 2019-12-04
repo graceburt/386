@@ -36,7 +36,7 @@ width: 100 px;
 	  border-radius:25px;
 	  background-color: white;
 	  height:75vh;
-	  overflow: hidden;
+	  overflow: auto;
 	}
 
 	.colContent{
@@ -143,6 +143,24 @@ font-size:20px;
   display: inline-block;
   border-radius: 6px;
   background: #dddddd;
+  height: 5vh;
+  width: 2.5vw;
+  margin-bottom:10px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=radio]:checked + label {
+  background: #2AD705;
+  color: #ffffff;
+}
+
+.time-selector input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
   height: 40px;
   width: 35px;
   margin-bottom:10px;
@@ -152,7 +170,7 @@ font-size:20px;
   cursor: pointer;
 }
 
-.weekDays-selector input[type=radio]:checked + label {
+.time-selector input[type=checkbox]:checked + label {
   background: #2AD705;
   color: #ffffff;
 }

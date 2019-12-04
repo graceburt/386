@@ -136,13 +136,22 @@ echo '/>
 </div>
 
 
-<div class="time-selector" style = "margin-right: 50px; margin-left: 50px;">
+<div class="time-selector" style = "margin-top:20px; width: 100%;">
 <form action = '#' name = posttime method ='post'>
 <?php  
 if (isset($_POST["group3"]))
 {
 	$_SESSION["time"] = $_POST["group3"];
 }
+if (isset($_POST["ampm"]))
+{
+	$_SESSION["ampm"]=$_POST["ampm"];
+}
+if(isset($_POST['half']))
+{
+	$_SESSION['half']=$_POST['half'];
+}
+
 echo'
   <input type="radio" id="1oclk" class="time" name="group3" onclick="this.form.submit()" value ="1"';
  if($_SESSION['time'] =='1')
@@ -244,14 +253,66 @@ echo ' />
   <label for="12oclk">12</label>
 ';
 ?>
-<form>
+</form>
+</div>
+<div class="time-selector" style = " width: 100%; height:75px;">
+<form action ="#" name = postampm method = 'post' style ="width:45%; float:right; margin-right:10px; margin-bottom:0; height:50px;" >
+<?php
+ echo'
+ <input type = "radio" id="am" class ="time" name ="ampm" onclick="this.form.submit()" value="am"';
+ if($_SESSION['ampm']=='am')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="am">am</label>
+ <input type = "radio" id="pm" class ="time" name ="ampm" onclick="this.form.submit()" value="pm"';
+ if($_SESSION['ampm']=='pm')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="pm">pm</label>';
+?>
+</form>
+<form action ="#" name = post30 method = 'post' style ="width:45%; float:left; margin-right:10px;height:50px;" >
+<?php
+ echo'
+ <input type = "radio" id="half" class ="time" name ="half" onclick="this.form.submit()" value="half"';
+ if($_SESSION['half']=='half')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="half">:30</label>
+ <input type = "radio" id="nothalf" class ="time" name ="half" onclick="this.form.submit()" value="nothalf"';
+ if($_SESSION['half']=='nothalf')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="nothalf">:00</label>';
+
+?>
 </div>
 </div>
   </div>
-
-<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
-<div class = "colContent"><form action ="#" name = postlink method = 'post' style ="width:100%;" >
 <?php
+	if(isset($_POST["addSession"]))
+	{
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$addquery = "insert into Session (session_time, SI_ID, session_weekday) values('".$_SESSION['date']."', '".$_SESSION['add-si-id']."', '".$_SESSION['day']."')";
+	$aq = mysqli_query($connection, $addquery);
+
+	}	
+?>
+<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
+<div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
+<?php
+
  if (isset($_POST['choose-si']))
  {
 	$_SESSION['add-si-id'] = $_POST['choose-si'];
@@ -262,7 +323,6 @@ if (isset($_SESSION['add-si-id']))
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
-		
 	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
 	$nr = mysqli_query($connection, $namequery);
 	$name_row = mysqli_fetch_array($nr); 
@@ -273,13 +333,35 @@ if (isset($_SESSION['add-si-id']))
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
-		echo "<p>".$row['session_weekday']." at  ".$row['session_time']."</p>";
+		echo "<p>".$row['session_weekday']." at  ". date('h:i a ', strtotime($row['session_time']))."</p>";
 	}
 	//echo $_SESSION['sil-id'];
-	if(isset($_SESSION['day']) and isset($_SESSION['time']))
+	if(isset($_SESSION['day']) and isset($_SESSION['time'])and isset($_SESSION['half']) and isset($_SESSION['ampm']))
 	{
-		echo"<p style = 'color:#800000; font-weight:bold;'>".$_SESSION['day']." at ".$_SESSION['time'].":00:00 </p>";
-		echo"<button class ='button1'>Add Session</button>";
+		if($_SESSION['ampm']=='pm')
+		{
+			$t = $_SESSION['time']+12;
+		}
+		else
+		{
+			$t = $_SESSION['time'];
+
+		}
+		if($t == 12 or $t==24)
+		{
+			$t = $t - 12;
+		}	
+		if($_SESSION['half']=='nothalf')
+		{
+			$_SESSION['date'] = $t.':00:00';
+		}
+		else
+		{
+			$_SESSION['date'] = $t.':30:00';
+
+		}
+		echo"<p style = 'color:#800000; font-weight:bold;'>".$_SESSION['day']." at ".date('h:i a',strtotime($_SESSION['date']))."</p>";
+		echo"<button class ='button1' name = 'addSession' value = 'add'>Add Session</button>";
 	}
 }
 else
@@ -287,6 +369,7 @@ else
 	echo"<h3> Choose an SI to view their current sessions</h3>";
 }
 ?>
+</form>
 </div>
 </div>
 </div>
