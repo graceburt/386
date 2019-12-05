@@ -23,9 +23,9 @@ if (!isset($_SESSION['admin']))
     </li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
       <ul class="drop">
-        <li><a href="add_si.php">Add</a></li>
-        <li><a href="delete_si.php">Delete</a></li>
-        <li><a href="update_si.php">Update</a></li>
+        <li><a href="add_session.php">Add</a></li>
+        <li><a href="delete_session.php">Delete</a></li>
+        <li><a href="update_session.php">Update</a></li>
       </ul>
     </li>
 </ul>
@@ -55,20 +55,43 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
-<div class="container" style = "float:left;width:500px;height:200px">
-<div id="cover" style= "float:left" align = "left">
-  <form method="get" action="">
-    <div class="tb">
-      <div class="td"><input type="text" placeholder="Search" required></div>
-      <div class="td" id="s-cover">
-        <button class = "searchbutton" type="submit">
-          <div id="s-circle"></div>
-          <span></span>
-        </button>
+<div style = "float:left;">
+  <div id="cover">
+    <div class = "scroll_bar">
+    <form method="get" action="">
+      <div class="tb">
+        <div class="td"><input type="text" placeholder="Search" required></div>
+        <div class="td" id="s-cover">
+          <button class = "searchbutton" type="submit">
+            <div id="s-circle"></div>
+            <span></span>
+          </button>
+        </div>
       </div>
+    </form>
     </div>
-  </form>
-</div>
+  </div>
 </div>
 
-
+<div class='column' style = 'text-align:center;float:right;'>
+  <div class = "scroll_bar">
+  <p style = "padding-top: 30px;">Update SI information</p>
+  	<form action = "#" name = postlink method='post' style="padding-top:5%;">
+  	
+            <input type="text" id = "id-input" name='id-input'
+                    rows = "1"
+  		   style ='width:95%' "font-size: 30px;" placeholder = 'Student ID'></textarea>
+  	<input type="text" id = "dept" name='dept'
+                    rows = "1"
+                     style ='width:95%' "font-size: 30px;" placeholder = 'Department (ex COSC)'></textarea>
+            <input type="text" id = "course" name='course'
+                    rows = "1"
+  		  placeholder = 'Course Number (ex 386)' style ='width:95%' "font-size: 30px;"></textarea> 
+             <input type="text" id = "sec" name='sec'
+                    rows = "1"
+  		   style ='width:95%' "font-size: 30px;" placeholder = 'Section Number (ex 001)'></textarea>
+  	
+  	<input type = "submit" value="Add SI" style = "font-size: 30px;"/>
+  	</form>
+  </div>
+</div>

@@ -7,6 +7,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <html>
+
 <body>
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
@@ -37,6 +38,31 @@
 </div>
 </body>
 </html> 
+
+<head>
+
+</head>
+	<body>
+	<div class = "container">
+	     <form method = "post" action = "">
+		<div id = "div_login">
+		  <h1>Login</h1>
+		  <div>
+	               <input type ="text" class="textbox" id="txt_uname" name="txt_uname" placeholder= "Username" />
+		  </div>
+		  <div>
+		      <input type = "password" class="textbox" id="txt_uname"  name="txt_pwd"  placeholder="Password"/>
+		</div>
+		<div>
+		     <input type="submit" value ="Submit" name="but_submit" id="but_submit"/>
+		</div>
+	      </div>
+	    </form>
+	</div>
+</body>
+</html>
+
+
 <?php
 
 session_start();
@@ -91,4 +117,3 @@ if(isset($_POST['loginbutton'])){
 		}
 	}
 }
-?>
