@@ -63,7 +63,7 @@ if (!isset($_SESSION['admin']))
 
 <div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
 <div class = 'column' style='text-align:center; height: auto; width:100%;' >
-<div class = 'colContent'>
+<div class = 'scroll_bar'>
 
 <h3>Choose a new day and time</h3>
 <div class="weekDays-selector">
