@@ -23,9 +23,9 @@ if (!isset($_SESSION['admin']))
     </li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
       <ul class="drop">
-        <li><a href="add_si.php">Add</a></li>
-        <li><a href="delete_si.php">Delete</a></li>
-        <li><a href="update_si.php">Update</a></li>
+        <li><a href="add_session.php">Add</a></li>
+        <li><a href="delete_session.php">Delete</a></li>
+        <li><a href="update_session.php">Update</a></li>
       </ul>
     </li>
 </ul>
@@ -71,4 +71,27 @@ if (!isset($_SESSION['admin']))
 </div>
 </div>
 
-
+<div class='column' style = 'padding:0; text-align:center;float:right;'>
+<p>Update SI information</p>
+	<form action = "#" name = postlink method='post' style="padding-top:5%;">
+	
+          <input type="text" id = "id-input" name='id-input'
+                  rows = "1"
+		   style ='width:95%' placeholder = 'Student ID'></textarea>
+	<p></p>  
+	<input type="text" id = "dept" name='dept'
+                  rows = "1"
+                   style ='width:95%' placeholder = 'Department (ex COSC)'></textarea>
+	<p></p>  
+          <input type="text" id = "course" name='course'
+                  rows = "1"
+		  placeholder = 'Course Number (ex 386)' style ='width:95%'></textarea>
+	<p></p>  
+           <input type="text" id = "sec" name='sec'
+                  rows = "1"
+		   style ='width:95%' placeholder = 'Section Number (ex 001)'></textarea>
+	<p></p>
+	
+	<input type = "submit" value="Add SI"/>
+	</form>
+</div>
