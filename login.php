@@ -1,24 +1,42 @@
-
+<!DOCTYPE html>
+<head>
+  <title>CSA Login</title>
+  <link rel = "stylesheet" type = "text/css" href = "loginpage.css">
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <html>
-<div class = "container">
-     <form method = "post" action = "">
-	<div id = "div_login">
-	  <h1>Login</h1>
-	  <div>
-               <input type ="text" class="textbox" id="txt_uname" name="txt_uname" placeholder= "Username" />
-	  </div>
-	  <div>
-	      <input type = "password" class="textbox" id="txt_uname"  name="txt_pwd"  placeholder="Password"/>
-	</div>
-	<div>
-	     <input type="submit" value ="Submit" name="but_submit" id="but_submit"/>
-	</div>
-      </div>
-    </form>
+<body>
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign In</h3>
+			</div>
+			<div class="card-body">
+				<form method = "post" action = "#">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" placeholder="username" name = "txt_uname"/>
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="password" name = "txt_pwd"/>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Login" class="btn float-right login_btn" name = "loginbutton"id = "loginbutton"/>
+					</div>
+				</form>
+			</div>
 </div>
-</html>
-
-
+</body>
+</html> 
 <?php
 
 session_start();
@@ -29,13 +47,11 @@ if(!$con){
 }
 error_reporting(E_ALL | E_WARNING | E_NOTICE);
 ini_set('display errors', TRUE);
-
-if(isset($_POST['but_submit'])){
+if(isset($_POST['loginbutton'])){
 	//$uname = mysqli_real_escape_string($con, $_POST['txt_uname']);
 	//$pword = mysqli_real_escape_string($con,$_POST['txt_pwd']);
 	$uname = $_POST['txt_uname'];
 	$pword = $_POST['txt_pwd'];
-
 	//check if username and password are empty
 	if($uname !='' && $pword!=''){
 
