@@ -255,6 +255,7 @@ echo ' />
 ?>
 </form>
 </div>
+
 <div class="time-selector" style = " width: 100%; height:75px;">
 <form action ="#" name = postampm method = 'post' style ="width:45%; float:right; margin-right:10px; margin-bottom:0; height:50px;" >
 <?php
@@ -413,41 +414,41 @@ else
 </div>
 
  <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
+ 	<div class = "scroll_bar">
 
-<h3>Choose an SI </h3>
-	<form action = "#" name=postlink method ='post'>
-     <?php
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-	if(isset($_POST['search']))
-	{
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
-	}
-	else{
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-	}
-	$r = mysqli_query($connection, $query);
-	while($row = mysqli_fetch_array($r))
-	{
-		echo "<p><input type = 'radio' name = 'choose-si' onclick='this.form.submit()' value = '".$row['ID']."'";
-		if(isset($_SESSION['add-si-id']))
-		{
-			if($row['ID']==$_SESSION['add-si-id'])
-			{
-				echo" checked";
-			}	
+	<h3>Choose an SI </h3>
+		<form action = "#" name=postlink method ='post'>
+	     <?php
+		$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+		if($connection->connect_error) {
+			die('Failed to Connect: '.$connection->connect_error);
 		}
-		echo ">".$row['name']."  (ID: ".$row['ID'].")</p>";
-	}
+		if(isset($_POST['search']))
+		{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
+		}
+		else{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+		}
+		$r = mysqli_query($connection, $query);
+		while($row = mysqli_fetch_array($r))
+		{
+			echo "<p><input type = 'radio' name = 'choose-si' onclick='this.form.submit()' value = '".$row['ID']."'";
+			if(isset($_SESSION['add-si-id']))
+			{
+				if($row['ID']==$_SESSION['add-si-id'])
+				{
+					echo" checked";
+				}	
+			}
+			echo ">".$row['name']."  (ID: ".$row['ID'].")</p>";
+		}
 
-?>
+	?>
 
-</form>
+	</form>
 
-</div>
-
+	</div>
 </div>
 
 </body>
