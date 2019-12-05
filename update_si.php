@@ -55,9 +55,8 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
-<div style = "float:left;">
+<div style = "float:left; margin-top: 100px;">
   <div id="cover">
-    <div class = "scroll_bar">
     <form method="get" action="">
       <div class="tb">
         <div class="td"><input type="text" placeholder="Search" required></div>
@@ -70,13 +69,12 @@ if (!isset($_SESSION['admin']))
       </div>
     </form>
     </div>
-  </div>
 </div>
 
 <div class='column' style = 'text-align:center;float:right;'>
   <div class = "scroll_bar">
-  <p style = "padding-top: 30px;">Update SI information</p>
-  	<form action = "#" name = postlink method='post' style="padding-top:5%;">
+  <h4>Update SI information</p>
+  	<form action = "#" name = postlink method='post'>
   	
             <input type="text" id = "id-input" name='id-input'
                     rows = "1"
@@ -91,7 +89,7 @@ if (!isset($_SESSION['admin']))
                     rows = "1"
   		   style ='width:95%' "font-size: 30px;" placeholder = 'Section Number (ex 001)'></textarea>
   	
-  	<input type = "submit" value="Add SI" style = "font-size: 30px;"/>
+  	<input type = "submit" value="Add SI" style = "font-size: 30px; margin: 20px;"/>
   	</form>
   </div>
 </div>
