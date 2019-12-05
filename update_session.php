@@ -200,7 +200,7 @@ else
 		$r = mysqli_query($connection, $query);
 		while($row = mysqli_fetch_array($r))
 		{
-			echo "<p><input type = 'buttong' name = 'choose-si' onclick='this.form.submit()' value = '".$row['ID']."'";
+			echo "<p><input type = 'radio' id = 'buttong' name = 'choose-si' onclick='this.form.submit()' value = '".$row['ID']."'";
 			if(isset($_SESSION['add-si-id']))
 			{
 				if($row['ID']==$_SESSION['add-si-id'])
