@@ -1,6 +1,7 @@
 header{
 	margin:0;
 }
+
 body{
 	color: black;
 	background-color: white;
@@ -13,13 +14,13 @@ body{
 }
 
 .search-box{
-padding: 10px;
-padding-left:5%
+  padding: 10px;
+  padding-left: 5%;
 }
 
 .text-box{
-border: black;
-width: 100 px; 
+  border: black;
+  width: 100 px; 
 
 }
 
@@ -55,8 +56,8 @@ width: 100 px;
 	}
 
 	::-webkit-scrollbar-thumb {
-	background: #7a7a7a;  
-	border-radius: 10px;
+  	background: #7a7a7a;  
+  	border-radius: 10px;
 	}
 
 	::-webkit-scrollbar-thumb:hover {
@@ -90,20 +91,23 @@ width: 100 px;
 	.indent{
 		padding-left:10%;
 	}
+
 th, td {
   padding: 5px;
 }
+
 table{
 	width:100%;
 	border-collapse:collapse;
 }
+
 a{
 	text-decoration:none;
 	color :#F7C55A;
 }
 
 h1, h2{
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1{
@@ -127,18 +131,26 @@ h4{
   margin-top: 20px;
   position: relative;
 }
+
 form{
-margin-top:20px;
+  margin-top:20px;
 }
+
 input[type=text]{
-margin-bottom:15px;
-border-radius:10px;
-height:40px;
-padding-top:5px;
-font-size:20px;
+  margin-bottom:15px;
+  border-radius:10px;
+  height:40px;
+  padding-top:5px;
+  font-size:20px;
 }
 
+li{
 
+  font-family: 'Catamaran', sans-serif;
+  padding: 5px;
+  color: #F7C55A;
+
+}
 
 .weekDays-selector input {
   display: none!important;
