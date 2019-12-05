@@ -233,6 +233,7 @@ if (!isset($_SESSION['admin']))
 -->
 </div>
 <div class = 'column' >
+	<div class = 'scroll_bar'>
      <?php
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
 	if($connection->connect_error) {
@@ -323,11 +324,8 @@ if (!isset($_SESSION['admin']))
 	}
 	echo"</table>";
      ?>
+ 	</div>
   </div>
-
-<!--   <div class = "column">
-  	<script async src="//jsfiddle.net/kimmobrunfeldt/72tkyn40/embed/"></script>
-  </div> -->
 
 </div>
 

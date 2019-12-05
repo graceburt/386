@@ -71,7 +71,12 @@ width: 100 px;
 	  /*height: 300px; /* Should be removed. Only for demonstration */
 	  margin-left: 20px;
 	  border: none;
+    overflow: hidden;
 	}
+
+  .scroll_bar{
+    overflow: auto;
+  }
 	/* Clear floats after the columns */
 	.row:after {
 	  content: "";
