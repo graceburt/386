@@ -31,14 +31,14 @@ body{
 	  padding-left: 10px;
 	  padding-right:10px;
 	  color:black;
-	  margin: 10px;
+	  margin: 30px;
 	  border: solid;
 	  border-color:#800000;
 	  border-radius:25px;
 	  background-color: white;
 	  height:75vh;
-	  overflow: auto;
-	}
+/*	  overflow: auto;
+*/	}
 
 	.colContent{
 		padding: 20px;
@@ -72,11 +72,13 @@ body{
 	  /*height: 300px; /* Should be removed. Only for demonstration */
 	  margin-left: 20px;
 	  border: none;
-    overflow: hidden;
-	}
+/*    overflow: hidden;
+*/	}
 
   .scroll_bar{
     overflow: auto;
+    padding: 10px;
+    height: 700px;
   }
 	/* Clear floats after the columns */
 	.row:after {
