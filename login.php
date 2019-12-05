@@ -1,12 +1,7 @@
 
 <html>
 <head>
-	
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto:300,400&display=swap" rel="stylesheet"> 	
-	<link rel ="stylesheet" href="stylemenu.css">
-	<link rel ="stylesheet" href="stylesheet.css">
-	<link rel ="stylesheet" href="stylesearch.css">
+
 </head>
 	<body>
 	<div class = "container">
