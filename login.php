@@ -43,7 +43,7 @@ if(isset($_POST['but_submit'])){
 
 	//check if username and password are empty
 	if($uname !='' && $pword!=''){
-
+		$hashpword = hash('ripemd160',$pword);
 		//write query to check if user exists
 		$sql_query = "SELECT COUNT(*) as cnt FROM Admin where username = '".$uname."' AND password ='".$pword."'";
 		$result = mysqli_query($con, $sql_query);
