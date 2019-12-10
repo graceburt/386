@@ -162,10 +162,8 @@ li{
   display: inline-block;
   border-radius: 6px;
   background: #dddddd;
-  height: 5vh;
   width: 2.5vw;
-  margin-bottom:10px;
-  margin-right: 3px;
+  margin:10px;
   line-height: 40px;
   text-align: center;
   cursor: pointer;
@@ -203,7 +201,7 @@ li{
   border-radius: 50px;
   background: #dddddd;
   height: 40px;
-  width: 50px;
+  width: 80px;
   margin-right: 3px;
   line-height: 40px;
   text-align: center;
@@ -214,6 +212,8 @@ li{
   background: #2AD705;
   color: #ffffff;
 }
+
+
 .button1 {
   background-color: #4CAF50; /* Green */
   border: none;
@@ -288,4 +288,67 @@ li{
   color: white;
   font-size: 16px;
   padding: 16px 32px;
+}
+
+.buttong {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.buttong input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.buttong:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.buttong input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.buttong input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.buttong .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
