@@ -77,7 +77,7 @@ if (!isset($_SESSION['added_students']))
 	$_SESSION['added_students']=array();
 }
 ?>
-<div class='column' style = 'padding-bottom: 20px; text-align:center;float:left;'>
+<div class='column' style = 'width: 40%; text-align:center;float:left;'>
 	<form action = "#" name = postlink method='post'>
 
 	<h4 style = 'padding-bottom:25px;'>Add SI Leader</h4>	
@@ -102,9 +102,41 @@ if (!isset($_SESSION['added_students']))
 	</form>
 </div>
 <?php 
-if(strlen($_POST['id-input'])>0 && strlen($_POST['dept'])>0 && strlen($_POST['course'])>0 && strlen($_POST['sec'])>0)
+if(strlen($_POST['id-input'])>0 && strlen($_POST['dept'])>0 && strlen($_POST['course'])>0 && strlen($_POST['sec'])>0 )
 {
-	array_push($_SESSION['added_students'], array("id"=>$_POST['id-input'], "dept"=> $_POST['dept'], "course"=>$_POST['course'], "sec" => $_POST['sec']));
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$name_query = "select name from Student where ID = ".$_POST['id-input'].";";	
+	$name_q = mysqli_query($connection, $name_query);
+	$name_row = mysqli_fetch_array($name_q);
+	$name = $name_row['name'];
+	if (strlen($name) ==0)
+	{
+		echo"<script type = 'text/javascript'>alert('No such student');</script>";
+	}
+	else
+	{
+		$course_query = "select * from Course where department = '".$_POST['dept']."' and number = ".$_POST['course']." and section = ".$_POST['sec']."";
+		$course_q = mysqli_query($connection, $course_query);
+		if (!mysqli_fetch_array($course_q))
+		{
+			echo"<script type = 'text/javascript'>alert('No such course');</script>";
+		}
+		else
+		{
+			if (!in_array(array("name" => $name,  "dept"=> $_POST['dept'], "course"=>$_POST['course'], "sec" => $_POST['sec'], "prof"=>$_POST['prof']), $_SESSION['added_students']))
+			{
+				$add_ = 'insert into SI values('.$_POST['id-input'].', "Anthony Curtis")';
+				$add_q = mysqli_query($connection, $add_);
+				$update_ = "update Course set SI_ID = ".$_POST['id-input']." where department = '".$_POST['dept']."' and number = ".$_POST['course']." and section = ".$_POST['sec']."";
+				$update_q = mysqli_query($connection, $update_);
+				array_push($_SESSION['added_students'], array("name" => $name,  "dept"=> $_POST['dept'], "course"=>$_POST['course'], "sec" => $_POST['sec'], "prof"=>$_POST['prof']));	
+			}
+		}
+	}
+	
 }
 if (count($_SESSION['added_students'])>0)
 {
@@ -132,7 +164,15 @@ $connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB')
 		
 	$query = "select name,ID from Student where Student_ID = ID";
  */
-?>
 
+
+
+?>
+<script type="text/javascript">
+    document.getElementById('id-input').value ='';
+    document.getElementById('dept').value ='';
+    document.getElementById('course').value ='';
+    document.getElementById('sec').value ='';
+</script>
 </body>
 </html>
