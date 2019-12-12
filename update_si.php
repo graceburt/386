@@ -77,7 +77,7 @@ if (!isset($_SESSION['admin']))
 		die('Failed to Connect: '.$connection->connect_error);
 	}
 	$updatequery = "update Course set department = '".$_SESSION['dept']."', number = '".$_SESSION['num']."', section = '".$_SESSION['sec']."' where SI_ID = '".$_SESSION['add-si-id']."'";
-	$aq = mysqli_query($connection, $updatequery);
+	$res = mysqli_query($connection, $updatequery);
 
 	}	
 ?>
@@ -86,7 +86,7 @@ if (!isset($_SESSION['admin']))
 <div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
 <div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
 <?php
-/*
+
  if (isset($_POST['choose-si']))
  {
 	$_SESSION['add-si-id'] = $_POST['choose-si'];
@@ -94,52 +94,16 @@ if (!isset($_SESSION['admin']))
 if (isset($_SESSION['add-si-id']))
 {
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
-	$nr = mysqli_query($connection, $namequery);
-	$name_row = mysqli_fetch_array($nr);
+	$coursequery = "SELECT department, number, section FROM Course WHERE SI_ID = '".$_SESSION['add-si-id']."'";
+	$result = $connection ->query($coursequery);
+	$rows = mysqli_fetch_array($rows);
+	while($rows){
+		echo $rows['course'];
 
-	echo "<h3> Choose a session to update</h3>";
-	//echo "<h3>".$name_row['name']." 's Sessions </h3>";
-	$query = "select department, number, section from Course where SI_ID = ".$_SESSION['add-si-id'];
-	
-	$r = mysqli_query($connection, $query);
+	}
 
-echo'<form action="#" name=postsession method ="post">';
-	while($row = mysqli_fetch_array($r))
-	{
 
-	if ($_SESSION['ses_to_up'] == $row['session_weekday'])
-	{
-	if(isset($_SESSION['num']) and isset($_SESSION['sec'])and isset($_SESSION['dept'])
-	{
-		echo"<input type = 'radio' checked id = '".$row['department']."' name = 'course_to_upd' onclick='this.form.submit()' value = '".$row['department']."'><label for ='".$row['department']."' style = 'color:#800000; font-weight:bold;'>".$_SESSION['dept']." </label></br>";
-		echo "[old time: ".$row['department']."]";
-	}
-	else
-	{
-		echo "<input type = 'radio' checked id = '".$row['department']."' name = 'course_to_upd' onclick='this.form.submit()' value = '".$row['department']."'><label for ='".$row['department']."'>".$row['department']."</label>";
-	}
-	}
-	else{	
-		echo "<input type = 'radio' id = '".$row['department']."' name = 'course_to_upd' onclick='this.form.submit()' value = '".$row['department']."'><label for ='".$row['department']."'>".$row['department']." </label>";
-	}
-		echo'</br>';	
-	}
-	//echo $_SESSION['sil-id'];
-	
-	if(isset($_SESSION['course_to_up']) and isset($_SESSION['dept']) and isset($_SESSION['num'])and isset($_SESSION['sec'])
-	{
-		echo"<button class ='button1' name = 'updateCourse' value = 'update'>Update Session</button>";
-	}
-	echo '</form>';
 }
-else
-{
-	echo"<h3> Choose an SI to view their current courses</h3>";
-}*/
 ?>
 </form>
 </div>
