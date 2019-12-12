@@ -65,8 +65,8 @@ if(isset($_POST['loginbutton'])){
 
 		$count = $row['cnt'];
 
-		$sql_query1 = "SELECT COUNT(*) as cnt1 FROM Supplemental_Instruction_Leader WHERE password = '".$pword."' AND Student_ID = (SELECT ID FROM Student WHERE  email = '".$uname."')";
-		$result1 = mysqli_query($con, $sql_query);
+		$sql_query1 = "SELECT COUNT(*) as cnt1 FROM Student WHERE password = '".$pword."' AND  email = '".$uname."'";
+		$result1 = mysqli_query($con, $sql_query1);
 		$row1 = mysqli_fetch_array($result1);
 
 		$count1 = $row1['cnt1'];
@@ -82,15 +82,16 @@ if(isset($_POST['loginbutton'])){
 		       // die('Should of redirected by now');
 		}
 		else if($count1 > 0){
-			echo 'test';
+			$_SESSION['SI']= true;
 			$_SESSION['uname'] =$uname;
 
-			header('Location: PC.php');
+			header('Location: student_page.php');
 		}
 
 
 		else{
 			echo "Invalid username or password";
+			echo $count1;
 		}
 	}
 }
