@@ -60,6 +60,63 @@ if (!isset($_SESSION['admin']))
 </header>
 
 <body style = "padding: 70px;">
+
+<div class ='text_column' style = "align:left; margin:2%; width:45%">
+
+<div id="cover">
+  <form method="post" action="#">
+    <div class="tb">
+      <div class="td"><input type="text" name = 'search' placeholder="Search"></div>
+      <div class="td" id="s-cover">
+        <button class = 'searchbutton' type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+ <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
+<div class = "scroll_bar">
+<h3>Choose an SI </h3>
+	<form action = "#" name=postlink method ='post'>
+     <?php
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	if(isset($_POST['search']))
+	{
+	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
+	}
+	else{
+	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+	}
+	$r = mysqli_query($connection, $query);
+	while($row = mysqli_fetch_array($r))
+	{
+		echo "<p><input type = 'radio' name = 'choose-si' onclick='this.form.submit()' value = '".$row['ID']."'";
+		if(isset($_SESSION['add-si-id']))
+		{
+			if($row['ID']==$_SESSION['add-si-id'])
+			{
+				echo" checked";
+			}	
+		}
+		echo ">".$row['name']."  (ID: ".$row['ID'].")</p>";
+	}
+
+?>
+
+</form>
+
+</div>
+
+</div>
+</div>
+
+<div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
 <div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
 <div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
 <?php
@@ -124,8 +181,6 @@ else
 </div>
 </div>
 </div>
-
-<div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
 <div class = 'column' style='text-align:center; height: auto; width:100%;' >
 <div class = 'colContent'>
 
@@ -374,61 +429,6 @@ echo ' />
 	}	
 ?>
 
-
-<div class ='text_column' style = "align:left; margin:2%; width:45%">
-
-<div id="cover">
-  <form method="post" action="#">
-    <div class="tb">
-      <div class="td"><input type="text" name = 'search' placeholder="Search"></div>
-      <div class="td" id="s-cover">
-        <button class = 'searchbutton' type="submit">
-          <div id="s-circle"></div>
-          <span></span>
-        </button>
-      </div>
-    </div>
-  </form>
-</div>
-
- <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
-<div class = "scroll_bar">
-<h3>Choose an SI </h3>
-	<form action = "#" name=postlink method ='post'>
-     <?php
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-	if(isset($_POST['search']))
-	{
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
-	}
-	else{
-	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
-	}
-	$r = mysqli_query($connection, $query);
-	while($row = mysqli_fetch_array($r))
-	{
-		echo "<p><input type = 'radio' name = 'choose-si' onclick='this.form.submit()' value = '".$row['ID']."'";
-		if(isset($_SESSION['add-si-id']))
-		{
-			if($row['ID']==$_SESSION['add-si-id'])
-			{
-				echo" checked";
-			}	
-		}
-		echo ">".$row['name']."  (ID: ".$row['ID'].")</p>";
-	}
-
-?>
-
-</form>
-
-</div>
-
-</div>
-</div>
 </body>
 </html>
 
