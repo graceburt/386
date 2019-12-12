@@ -56,7 +56,7 @@ if (!isset($_SESSION['admin']))
 	<link rel="javascript" href="progress.js">
 
 <div class="text_column" style = "float:left">
-<div class="container" style = "float:left; width:100%; height:200px">
+<div style = "float:left; width:100%; height:200px">
 <div id="cover" style= "float:left" align = "left">
   <form method="POST" action="#">
     <div class="tb">
@@ -102,7 +102,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 
 
  <div class = "column" style="float:right">
- 	<div class = "scroll_bar">
+ 	<div class = "scroll_bar" style = "height: 675px;">
 	<form action method= "post">
 	<h4>Delete SI Leader</h4>	
      <?php
