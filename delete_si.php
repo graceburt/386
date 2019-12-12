@@ -91,9 +91,9 @@ echo' <div class = "column" style="width:100%; height:300px;">
 		echo "<p><input type = 'checkbox' name = 'SI[]' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
 	}
       
-       echo ' <input type = "submit" value = "Search" id= "search"> 
+       echo ' <input type = "submit" value = "Delete" id= "delete" name = "delete"> 
 	</form>
-  </div>' ;
+   </div>' ;
 }
 ?>
 
@@ -114,7 +114,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 	$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
 
 	$r = mysqli_query($connection, $query);
-	while($row = mysqli_fetch_array($r))
+	while($row = mysqli_fetch_array($r,MYSQLI_ASSOC))
 	{
 		echo "<p><input type = 'checkbox' name = 'SI[]' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
 	}
@@ -130,35 +130,42 @@ echo' <div class = "column" style="width:100%; height:300px;">
 
 <?php 
 
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	$connnection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
 	//Php code to be included
 
 	$student=$_POST['SI'];
-	$id = '';
 	//echo "'.$Student[0].'";
+	
+	$ids = "(".join(",",$student).")";
 
-	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE Student_ID = '".$id."'";
-	$studentquery ="DELETE FROM Student WHERE ID = '".$id."'";
-	$tf = mysqli_query($connection, $sql);
+	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE Student_ID IN ".$ids.";";
+        //$coursequery  = "UPDATE Courses SET Student_ID = "" WHERE Student_ID IN = ".$ids.";";
+	//print($siquery);
+	$result = mysqli_query($connection, $siquery);
+	//$result1 = mysqli_query($connection, $coursequery);
+
+	//echo ("LKSJDLJF");
+       //print_r($result);
 
 	if(isset($_POST['delete'])){
-        //echo "'.$student[0].'";  
+	$_SESSION['delete'];
+        //echo "$student[0]";  
 	if(empty($student)){
 		echo("You didn't select any SI's to remove.");
 	}else{
 		$N = count($student);
 		//echo("You want to remove the following SIs \n");
-		for($i=0; $i< $N; $i++){
+		for($i=0; $i < $N; $i++){
 			$id = $student[$i];
 			echo $id;
-			if(mysqli_query($connection,$siquery)){
-				echo "Removed from SI successfully";
-			}
-			if(mysqli_query($connection,$studentquery)){
-				echo "removed from Student successfully";
-			}
+			if($result){
+				echo " Removed from SI successfully\n";
+			}/*
+			if($result1){
+				echo "successs"
+			}*/
                }
 	}
 	}
-
+ 
 ?>
