@@ -91,7 +91,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 		echo "<p><input type = 'checkbox' name = 'SI[]' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
 	}
       
-       echo ' <input type = "submit" value = "Delete" id= "delete"> 
+       echo ' <input type = "submit" value = "Search" id= "search"> 
 	</form>
   </div>' ;
 }
@@ -136,7 +136,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 	$id = '';
 	//echo "'.$Student[0].'";
 
-	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE ID = '".$id."'";
+	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE Student_ID = '".$id."'";
 	$studentquery ="DELETE FROM Student WHERE ID = '".$id."'";
 	$tf = mysqli_query($connection, $sql);
 
