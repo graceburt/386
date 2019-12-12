@@ -1,4 +1,7 @@
-<header>
+
+<!DOCTYPE html>
+<html>
+<head>
 <?php
 session_start();
 if (!isset($_SESSION['admin']))
@@ -10,34 +13,7 @@ if (!isset($_SESSION['admin']))
 }
 
 ?>
-
-<nav id="navigation">
-  <ul class="links" style = "float:left;">
-  <li><a href="admin_page.php">Home</a></li>
-    <li class="dropdown"><a href="#" class="trigger-drop">Edit SI<i class="arrow"></i></a>
-      <ul class="drop">
-        <li><a href="add_si.php">Add</a></li>
-        <li><a href="delete_si.php">Delete</a></li>
-        <li><a href="update_si.php">Update</a></li>
-      </ul>
-    </li>
-    <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
-      <ul class="drop">
-        <li><a href="add_session.php">Add</a></li>
-        <li><a href="delete_session.php">Delete</a></li>
-        <li><a href="update_session.php">Update</a></li>
-      </ul>
-    </li>
-</ul>
-<ul class ="links">
-    <li><a href="logout.php">Log Out</a>
-    </li>
-  </ul>
-</nav>
-
-
-</header>
-
+<!-- Load icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,92 +31,178 @@ if (!isset($_SESSION['admin']))
 	</script>
 	<link rel="javascript" href="progress.js">
 
-<div style = "float:left;">
-  <div id="cover">
-    <div class = "scroll_bar">
-    <form method="get" action="">
-      <div class="tb">
-        <div class="td"><input type="text" id="searchtxt"  placeholder="Search"required></div>
-        <div class="td" id="s-cover">
-          <button id = "search"  class = "searchbutton" type="submit">
-            <div id="s-circle"></div>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </form>
-    </div>
-  </div>
-</div>
+</head>
+<header>
+<nav id="navigation">
+  <ul class="links" style = "float:left;">
+  <li><a href="admin_page.php">Home</a></li>
+    <li class="dropdown"><a href="#" class="trigger-drop">Edit SI<i class="arrow"></i></a>
+      <ul class="drop">
+        <li><a href="add_si.php">Add</a></li>
+        <li><a href="delete_si.php">Delete</a></li>
+        <li><a href="update_si.php">Update</a></li>
+      </ul>
+    </li>
+    <li class="dropdown"><a href="#" class="trigger-drop">Edit Session<i class="arrow"></i></a>
+      <ul class="drop">
+        <li><a href="add_session.php">Add</a></li>
+        <li><a href="delete_session.php">Delete</a></li>
+        <li><a href="update_session.php">Update</a></li>
+      </ul
+>
+    </li>
+</ul>
+<ul class ="links">
+    <li><a href="logout.php">Log Out</a>
+    </li>
+  </ul>
+</nav>
 
-<div class='column' style = 'text-align:center;float:right;'>
-  <div class = "scroll_bar">
-  <p style = "padding-top: 30px;">Update SI information</p>
-  	<form action = "#" name = postlink method='post' style="padding-top:5%;">
-  	
-            <input type="text" id = "id-input" name='id-input'
-                    rows = "1"
-  		   style ='width:95%' "font-size: 30px;" placeholder = 'Student ID'></textarea>
-  	<input type="text" id = "dept" name='dept'
-                    rows = "1"
-                     style ='width:95%' "font-size: 30px;" placeholder = 'Department (ex COSC)'></textarea>
-            <input type="text" id = "course" name='course'
-                    rows = "1"
-  		  placeholder = 'Course Number (ex 386)' style ='width:95%' "font-size: 30px;"></textarea> 
-             <input type="text" id = "sec" name='sec'
-                    rows = "1"
-  		   style ='width:95%' "font-size: 30px;" placeholder = 'Section Number (ex 001)'></textarea>
-  	
-  	<input type = "submit" value="Add SI" name = "submitbutton" id = "submitbutton"  style = "font-size: 30px;"/>
-  	</form>
-  </div>
-</div>
 
+</header>
+
+<body style = "padding: 70px;">
+
+<div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
 
 <?php
-$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-if($connection->connect_error) {
-	die('Failed to Connect: '.$connection->connect_error);
-}
-
-if(isset($_GET['search'])){
-   $student = mysql_real_escape_string($_GET['searchtxt']);
-   $searchquery = "SELECT name from Student WHERE name LIKE '%".$student."%'";
-   $result = mysql_query($searchquery);
-   while($row = mysql_fetch_array($result)){
-	 echo "<div id = 'link' onClick = 'addText(\"".$row['name']."\");'>" .$row['name'] . "</div>";
-         echo $result;
-     }
-}
-
-if(isset($_POST['submitbutton'])){
-	$id = $_POST['id-input'];
-	$dept = $_POST['dept'];
-	$course = $_POST['course'];
-	$sec = $_POST['sec'];
-
-	if($id != ''){
-
+ 	if(isset($_POST["course_to_upd"]))
+	{
+		$_SESSION['course_to_up']=$_POST["course_to_upd"];
 	}
-
-	if($dept != ''){
-	
+	if(isset($_POST["updatecourse"]))
+	{
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
 	}
+	$updatequery = "update Course set department = '".$_SESSION['dept']."', number = '".$_SESSION['num']."', section = '".$_SESSION['sec']."' where SI_ID = '".$_SESSION['add-si-id']."'";
+	$aq = mysqli_query($connection, $updatequery);
 
-	if($course != ''){
-
-	}
-
-	if($sec != ''){
-
-	}
-
-}
-
-
-
-
-
-
-
+	}	
 ?>
+
+
+<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
+<div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
+<?php
+/*
+ if (isset($_POST['choose-si']))
+ {
+	$_SESSION['add-si-id'] = $_POST['choose-si'];
+ }
+if (isset($_SESSION['add-si-id']))
+{
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
+	$nr = mysqli_query($connection, $namequery);
+	$name_row = mysqli_fetch_array($nr);
+
+	echo "<h3> Choose a session to update</h3>";
+	//echo "<h3>".$name_row['name']." 's Sessions </h3>";
+	$query = "select department, number, section from Course where SI_ID = ".$_SESSION['add-si-id'];
+	
+	$r = mysqli_query($connection, $query);
+
+echo'<form action="#" name=postsession method ="post">';
+	while($row = mysqli_fetch_array($r))
+	{
+
+	if ($_SESSION['ses_to_up'] == $row['session_weekday'])
+	{
+	if(isset($_SESSION['num']) and isset($_SESSION['sec'])and isset($_SESSION['dept'])
+	{
+		echo"<input type = 'radio' checked id = '".$row['department']."' name = 'course_to_upd' onclick='this.form.submit()' value = '".$row['department']."'><label for ='".$row['department']."' style = 'color:#800000; font-weight:bold;'>".$_SESSION['dept']." </label></br>";
+		echo "[old time: ".$row['department']."]";
+	}
+	else
+	{
+		echo "<input type = 'radio' checked id = '".$row['department']."' name = 'course_to_upd' onclick='this.form.submit()' value = '".$row['department']."'><label for ='".$row['department']."'>".$row['department']."</label>";
+	}
+	}
+	else{	
+		echo "<input type = 'radio' id = '".$row['department']."' name = 'course_to_upd' onclick='this.form.submit()' value = '".$row['department']."'><label for ='".$row['department']."'>".$row['department']." </label>";
+	}
+		echo'</br>';	
+	}
+	//echo $_SESSION['sil-id'];
+	
+	if(isset($_SESSION['course_to_up']) and isset($_SESSION['dept']) and isset($_SESSION['num'])and isset($_SESSION['sec'])
+	{
+		echo"<button class ='button1' name = 'updateCourse' value = 'update'>Update Session</button>";
+	}
+	echo '</form>';
+}
+else
+{
+	echo"<h3> Choose an SI to view their current courses</h3>";
+}*/
+?>
+</form>
+</div>
+</div>
+</div>
+
+<div class ='text_column' style = "align:left; margin:2%; width:45%">
+
+<div id="cover">
+  <form method="post" action="#">
+    <div class="tb">
+      <div class="td"><input type="text" name = 'search' placeholder="Search"></div>
+      <div class="td" id="s-cover">
+        <button class = 'searchbutton' type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+ <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
+ 	<div class = "scroll_bar">
+
+	<h3>Choose an SI </h3>
+		<form action = "#" name=postlink method ='post'>
+	     <?php
+		$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+		if($connection->connect_error) {
+			die('Failed to Connect: '.$connection->connect_error);
+		}
+		if(isset($_POST['search']))
+		{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID and name like '%".$_POST['search']."%'";
+		}
+		else{
+		$query = "select name,ID from Student,Supplemental_Instruction_Leader where Student_ID = ID";
+		}
+		$r = mysqli_query($connection, $query);
+
+		while($row = mysqli_fetch_array($r))
+		{
+			echo "<p><input type = 'radio' id = 'buttong' name = 'choose-si' onclick='this.form.submit()' value = '".$row['ID']."'";
+			if(isset($_SESSION['add-si-id']))
+			{
+				if($row['ID']==$_SESSION['add-si-id'])
+				{
+					echo" checked";
+				}	
+			}
+			echo ">".$row['name']."  (ID: ".$row['ID'].")</p>";
+		}
+
+	?>
+
+	</form>
+
+	</div>
+</div>
+
+</body>
+</html>
+
+
+

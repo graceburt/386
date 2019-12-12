@@ -91,9 +91,9 @@ echo' <div class = "column" style="width:100%; height:300px;">
 		echo "<p><input type = 'checkbox' name = 'SI[]' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
 	}
       
-     echo'   <input type = "submit" value = "Delete" id= "delete"> 
+       echo ' <input type = "submit" value = "Search" id= "search"> 
 	</form>
-  </div> ';
+  </div>' ;
 }
 ?>
 
@@ -119,7 +119,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 	}
 ?>
       
-        <input type = "submit" value = "Delete"> 
+        <input type = "submit" value = "Delete" id = "delete" name = "delete" onclick= "return confirm('Are you sure?')"> 
 	</form>
 
 
@@ -136,22 +136,26 @@ echo' <div class = "column" style="width:100%; height:300px;">
 	$id = '';
 	//echo "'.$Student[0].'";
 
-	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE ID = '$id'";
-	$studentquery ="DELETE FROM Student WHERE ID = '$id'";
+	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE Student_ID = '".$id."'";
+	$studentquery ="DELETE FROM Student WHERE ID = '".$id."'";
 	$tf = mysqli_query($connection, $sql);
 
 	if(isset($_POST['delete'])){
-        echo "'.$student[0].'";  
+        //echo "'.$student[0].'";  
 	if(empty($student)){
 		echo("You didn't select any SI's to remove.");
 	}else{
 		$N = count($student);
-		echo("You want to remove the following SIs \n");
+		//echo("You want to remove the following SIs \n");
 		for($i=0; $i< $N; $i++){
 			$id = $student[$i];
 			echo $id;
-			mysqli_query($connection,$siquery);
-			mysqli_query($connection,$studentquery);
+			if(mysqli_query($connection,$siquery)){
+				echo "Removed from SI successfully";
+			}
+			if(mysqli_query($connection,$studentquery)){
+				echo "removed from Student successfully";
+			}
                }
 	}
 	}
