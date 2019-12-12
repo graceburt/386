@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if (!isset($_SESSION['SI']))
+{
+
+	echo'<meta http-equiv="refresh" content="0; URL=login.php" />';
+	exit();
+//header("location:login.php");
+}
+
+?>
 <html>
 <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
 <head>
