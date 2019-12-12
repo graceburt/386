@@ -17,7 +17,7 @@
 
   <header>
 <nav id="navigation">
-  <ul class="links" style = "float:left;">
+ <!-- <ul class="links" style = "float:left;">
   <li><a href="">Home</a></li>
     <li class="dropdown"><a href="#" class="trigger-drop">Edit SI<i class="arrow"></i></a>
       <ul class="drop">
@@ -34,6 +34,7 @@
       </ul>
     </li>
 </ul>
+-->
 <ul class ="links">
     <li><a href="logout.php">Log Out</a>
     </li>
