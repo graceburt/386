@@ -247,7 +247,7 @@ if (!isset($_SESSION['admin']))
 			<tr>
 			<th align = 'center'>SI Leader</th>
 			<th align = 'center' >ATTENDANCE <br/> REPORTED</th>
-			<th align = 'center' >OFFICE HOURS</th>
+			<th align = 'center' >COMPLETED<br/> OFFICE HOURS</th>
 			</tr>
 		</thead>";
 	
