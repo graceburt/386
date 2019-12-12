@@ -235,7 +235,7 @@ li{
   grid-gap: 10px;
   margin: 50px;
   grid-template-columns: repeat(3, auto);
-  grid-template-rows: 250px;
+  grid-template-rows: 500px;
 }
 .containertext {
   position: relative;
