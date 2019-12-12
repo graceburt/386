@@ -180,7 +180,6 @@ else
 </form>
 </div>
 </div>
-</div>
 <div class = 'column' style='text-align:center; height: auto; width:100%;' >
 <div class = 'colContent'>
 
@@ -416,6 +415,8 @@ echo ' />
 </div>
 </div>
   </div>
+</div>
+
 <?php
 	if(isset($_POST["addSession"]))
 	{
