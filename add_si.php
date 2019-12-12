@@ -128,7 +128,7 @@ if(strlen($_POST['id-input'])>0 && strlen($_POST['dept'])>0 && strlen($_POST['co
 		{
 			if (!in_array(array("name" => $name,  "dept"=> $_POST['dept'], "course"=>$_POST['course'], "sec" => $_POST['sec'], "prof"=>$_POST['prof']), $_SESSION['added_students']))
 			{
-				$add_ = 'insert into SI values('.$_POST['id-input'].', "Anthony Curtis")';
+				$add_ = 'insert into Supplemental_Instruction_Leader values('.$_POST['id-input'].', "Anthony")';
 				$add_q = mysqli_query($connection, $add_);
 				$update_ = "update Course set SI_ID = ".$_POST['id-input']." where department = '".$_POST['dept']."' and number = ".$_POST['course']." and section = ".$_POST['sec']."";
 				$update_q = mysqli_query($connection, $update_);
