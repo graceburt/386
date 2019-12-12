@@ -60,6 +60,70 @@ if (!isset($_SESSION['admin']))
 </header>
 
 <body style = "padding: 70px;">
+<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
+<div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
+<?php
+
+ if (isset($_POST['choose-si']))
+ {
+	$_SESSION['add-si-id'] = $_POST['choose-si'];
+ }
+if (isset($_SESSION['add-si-id']))
+{
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
+	$nr = mysqli_query($connection, $namequery);
+	$name_row = mysqli_fetch_array($nr); 
+
+	echo "<h3>".$name_row['name']." 's Sessions </h3>";
+	$query = "select session_weekday,session_time from Session where SI_ID = ".$_SESSION['add-si-id'];
+	
+	$r = mysqli_query($connection, $query);
+	while($row = mysqli_fetch_array($r))
+	{
+		echo "<p>".$row['session_weekday']." at  ". date('h:i a ', strtotime($row['session_time']))."</p>";
+	}
+	//echo $_SESSION['sil-id'];
+	if(isset($_SESSION['day']) and isset($_SESSION['time'])and isset($_SESSION['half']) and isset($_SESSION['ampm']))
+	{
+		if($_SESSION['ampm']=='pm')
+		{
+			$t = $_SESSION['time']+12;
+		}
+		else
+		{
+			$t = $_SESSION['time'];
+
+		}
+		if($t == 12 or $t==24)
+		{
+			$t = $t - 12;
+		}	
+		if($_SESSION['half']=='nothalf')
+		{
+			$_SESSION['date'] = $t.':00:00';
+		}
+		else
+		{
+			$_SESSION['date'] = $t.':30:00';
+
+		}
+		echo"<p style = 'color:#800000; font-weight:bold;'>".$_SESSION['day']." at ".date('h:i a',strtotime($_SESSION['date']))."</p>";
+		echo"<button class ='button1' name = 'addSession' value = 'add'>Add Session</button>";
+	}
+}
+else
+{
+	echo"<h3> Choose an SI to view their current sessions</h3>";
+}
+?>
+</form>
+</div>
+</div>
+</div>
 
 <div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
 <div class = 'column' style='text-align:center; height: auto; width:100%;' >
@@ -309,70 +373,7 @@ echo ' />
 
 	}	
 ?>
-<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
-<div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
-<?php
 
- if (isset($_POST['choose-si']))
- {
-	$_SESSION['add-si-id'] = $_POST['choose-si'];
- }
-if (isset($_SESSION['add-si-id']))
-{
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
-	$nr = mysqli_query($connection, $namequery);
-	$name_row = mysqli_fetch_array($nr); 
-
-	echo "<h3>".$name_row['name']." 's Sessions </h3>";
-	$query = "select session_weekday,session_time from Session where SI_ID = ".$_SESSION['add-si-id'];
-	
-	$r = mysqli_query($connection, $query);
-	while($row = mysqli_fetch_array($r))
-	{
-		echo "<p>".$row['session_weekday']." at  ". date('h:i a ', strtotime($row['session_time']))."</p>";
-	}
-	//echo $_SESSION['sil-id'];
-	if(isset($_SESSION['day']) and isset($_SESSION['time'])and isset($_SESSION['half']) and isset($_SESSION['ampm']))
-	{
-		if($_SESSION['ampm']=='pm')
-		{
-			$t = $_SESSION['time']+12;
-		}
-		else
-		{
-			$t = $_SESSION['time'];
-
-		}
-		if($t == 12 or $t==24)
-		{
-			$t = $t - 12;
-		}	
-		if($_SESSION['half']=='nothalf')
-		{
-			$_SESSION['date'] = $t.':00:00';
-		}
-		else
-		{
-			$_SESSION['date'] = $t.':30:00';
-
-		}
-		echo"<p style = 'color:#800000; font-weight:bold;'>".$_SESSION['day']." at ".date('h:i a',strtotime($_SESSION['date']))."</p>";
-		echo"<button class ='button1' name = 'addSession' value = 'add'>Add Session</button>";
-	}
-}
-else
-{
-	echo"<h3> Choose an SI to view their current sessions</h3>";
-}
-?>
-</form>
-</div>
-</div>
-</div>
 
 <div class ='text_column' style = "align:left; margin:2%; width:45%">
 
@@ -391,7 +392,7 @@ else
 </div>
 
  <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
-
+<div class = "scroll_bar">
 <h3>Choose an SI </h3>
 	<form action = "#" name=postlink method ='post'>
      <?php
@@ -427,7 +428,7 @@ else
 </div>
 
 </div>
-
+</div>
 </body>
 </html>
 
