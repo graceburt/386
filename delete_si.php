@@ -57,7 +57,7 @@ if (!isset($_SESSION['admin']))
 
 <div class="text_column" style = "float:left">
 <div style = "float:left; width:100%; height:200px">
-<div id="cover" style= "float:left" align = "left">
+<div id="cover" style= "float:left; align: left;">
   <form method="POST" action="#">
     <div class="tb">
       <div class="td"><input type="text"  name = 'search' placeholder="Search" required></div>
@@ -120,7 +120,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 	}
 ?>
       
-        <input type = "submit" value = "Delete" id = "delete" name = "delete" onclick= "return confirm('Are you sure?')"> 
+        <input type = "submit" value = "Delete" style = "font-size: 40px;" id = "delete" name = "delete" onclick= "return confirm('Are you sure?')"> 
 	</form>
 
 
