@@ -134,7 +134,8 @@ else
 </div>
 
  <div class = "column" style = 'width: 100%; float:left;margin-top: 5%; height:400px'>
-<h1>Choose an SI </h1>
+ 	<div class = "scroll_bar"> 
+<h3>Choose an SI </h3>
 	<form action = "#" name = postlink method='post' style="padding-top:5%;">
      <?php
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
@@ -168,6 +169,7 @@ else
 	</form>
 <?php
 ?>
+</div>
 </div>
 
 </body>

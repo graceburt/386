@@ -162,7 +162,7 @@ else
   </form>
 </div>
 
- <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center'> 
+ <div class = "column" style = 'width: 100%; float:left; height:400px; text-align:center'> 
  	<div class = "scroll_bar">
 
 	<h3>Choose an SI </h3>

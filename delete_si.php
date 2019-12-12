@@ -102,6 +102,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 
 
  <div class = "column" style="float:right">
+ 	<div class = "scroll_bar">
 	<form action method= "post">
 	<h4>Delete SI Leader</h4>	
      <?php
@@ -124,7 +125,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 
 
 
-
+</div>
   </div> 
 
 <?php 
