@@ -91,7 +91,7 @@ echo' <div class = "column" style="width:100%; height:300px;">
 		echo "<p><input type = 'checkbox' name = 'SI[]' value = '".$row['ID']."'>".$row['name']."  (ID: ".$row['ID'].")</p>";
 	}
       
-     echo'   <input type = "submit" value = "Delete"> 
+     echo'   <input type = "submit" value = "Delete" id= "delete"> 
 	</form>
   </div> ';
 }
@@ -129,26 +129,30 @@ echo' <div class = "column" style="width:100%; height:300px;">
 
 <?php 
 
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
 	//Php code to be included
 
 	$student=$_POST['SI'];
 	$id = '';
-	//echo("'.$Student[0].'";
+	//echo "'.$Student[0].'";
 
-	$sql = "DELETE FROM Supplemental_Instruction_Leader WHERE ID = '$id'";
-	$t = mysqli_query($connection, $sql);
+	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE ID = '$id'";
+	$studentquery ="DELETE FROM Student WHERE ID = '$id'";
+	$tf = mysqli_query($connection, $sql);
 
-	if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['Delete'])){
-
-	if(empty($studet)){
+	if(isset($_POST['delete'])){
+        echo "'.$student[0].'";  
+	if(empty($student)){
 		echo("You didn't select any SI's to remove.");
 	}else{
 		$N = count($student);
 		echo("You want to remove the following SIs \n");
 		for($i=0; $i< $N; $i++){
 			$id = $student[$i];
-			
-		}
+			echo $id;
+			mysqli_query($connection,$siquery);
+			mysqli_query($connection,$studentquery);
+               }
 	}
 	}
 

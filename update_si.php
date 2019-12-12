@@ -60,9 +60,9 @@ if (!isset($_SESSION['admin']))
     <div class = "scroll_bar">
     <form method="get" action="">
       <div class="tb">
-        <div class="td"><input type="text" placeholder="Search" required></div>
+        <div class="td"><input type="text" id="searchtxt"  placeholder="Search"required></div>
         <div class="td" id="s-cover">
-          <button class = "searchbutton" type="submit">
+          <button id = "search"  class = "searchbutton" type="submit">
             <div id="s-circle"></div>
             <span></span>
           </button>
@@ -91,7 +91,56 @@ if (!isset($_SESSION['admin']))
                     rows = "1"
   		   style ='width:95%' "font-size: 30px;" placeholder = 'Section Number (ex 001)'></textarea>
   	
-  	<input type = "submit" value="Add SI" style = "font-size: 30px;"/>
+  	<input type = "submit" value="Add SI" name = "submitbutton" id = "submitbutton"  style = "font-size: 30px;"/>
   	</form>
   </div>
 </div>
+
+
+<?php
+$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+if($connection->connect_error) {
+	die('Failed to Connect: '.$connection->connect_error);
+}
+
+if(isset($_GET['search'])){
+   $student = mysql_real_escape_string($_GET['searchtxt']);
+   $searchquery = "SELECT name from Student WHERE name LIKE '%".$student."%'";
+   $result = mysql_query($searchquery);
+   while($row = mysql_fetch_array($result)){
+	 echo "<div id = 'link' onClick = 'addText(\"".$row['name']."\");'>" .$row['name'] . "</div>";
+         echo $result;
+     }
+}
+
+if(isset($_POST['submitbutton'])){
+	$id = $_POST['id-input'];
+	$dept = $_POST['dept'];
+	$course = $_POST['course'];
+	$sec = $_POST['sec'];
+
+	if($id != ''){
+
+	}
+
+	if($dept != ''){
+	
+	}
+
+	if($course != ''){
+
+	}
+
+	if($sec != ''){
+
+	}
+
+}
+
+
+
+
+
+
+
+?>
