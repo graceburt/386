@@ -55,8 +55,20 @@ if (!isset($_SESSION['admin']))
     </li>
   </ul>
 </nav>
-
-
+<?php
+if (isset($_POST["group3"]))
+{
+	$_SESSION["time"] = $_POST["group3"];
+}
+if (isset($_POST["ampm"]))
+{
+	$_SESSION["ampm"]=$_POST["ampm"];
+}
+if(isset($_POST['half']))
+{
+	$_SESSION['half']=$_POST['half'];
+}
+?>
 </header>
 
 <body style = "padding: 70px;">
@@ -257,18 +269,6 @@ echo '/>
 <div class="time-selector" style = "margin-top:20px; width: 100%;">
 <form action = '#' name = posttime method ='post'>
 <?php  
-if (isset($_POST["group3"]))
-{
-	$_SESSION["time"] = $_POST["group3"];
-}
-if (isset($_POST["ampm"]))
-{
-	$_SESSION["ampm"]=$_POST["ampm"];
-}
-if(isset($_POST['half']))
-{
-	$_SESSION['half']=$_POST['half'];
-}
 
 echo'
   <input type="radio" id="1oclk" class="time" name="group3" onclick="this.form.submit()" value ="1"';
