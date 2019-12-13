@@ -85,7 +85,7 @@ if(isset($_POST['loginbutton'])){
 			$_SESSION['SI']= true;
 			$_SESSION['uname'] =$uname;
 
-			header('Location: student_page.php');
+			header('Location: attendancepage.php');
 		}
 
 
