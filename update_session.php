@@ -181,8 +181,7 @@ if(isset($_POST['half']))
 echo'
   <input type="radio" id="1oclk" class="time" name="group3" onclick="this.form.submit()" value ="1"';
  if($_SESSION['time'] =='1')
-@@ -313,16 +254,152 @@ function submitPostLink()
-';
+@@ -313,16 +254,152 @@ function submitPostLink();
 ?>
 </form>
 </div>
