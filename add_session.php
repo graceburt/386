@@ -77,6 +77,18 @@ if(isset($_POST['group']))
 	$_SESSION['day'] = $_POST['group'];
 }	
 ?>
+<?php
+	if(isset($_POST["addSession"]))
+	{
+		echo $_SESSION['date'],"  ".$_SESSION['add-si-id']."  ".$_SESSION['day'];
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$addquery = "insert into Session (session_time, SI_ID, session_weekday) values('".$_SESSION['date']."', '".$_SESSION['add-si-id']."', '".$_SESSION['day']."')";
+	$aq = mysqli_query($connection, $addquery);
+	}	
+?>
 </header>
 
 <body style = "padding: 70px;">
@@ -417,18 +429,6 @@ echo ' />
   </div>
 </div>
 
-<?php
-	if(isset($_POST["addSession"]))
-	{
-	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	if($connection->connect_error) {
-		die('Failed to Connect: '.$connection->connect_error);
-	}
-	$addquery = "insert into Session (session_time, SI_ID, session_weekday) values('".$_SESSION['date']."', '".$_SESSION['add-si-id']."', '".$_SESSION['day']."')";
-	$aq = mysqli_query($connection, $addquery);
-
-	}	
-?>
 
 </body>
 </html>
