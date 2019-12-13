@@ -17,17 +17,11 @@ $email = $_SESSION['uname']
 <head>
     <title>CSA Student Overview </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="https://fonts.googleapis.com/css?family=Catamaran|Open+Sans&display=swap" rel="stylesheet">
-
-
-    <link rel ="stylesheet" href="stylemenu.css">
-    <link rel ="stylesheet" href="stylesheet.css">
-    <link rel ="stylesheet" href="stylesearch.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto:300,400&display=swap" rel="stylesheet">
+     <link rel ="stylesheet" href="stylemenu.css">
+     <link rel ="stylesheet" href="stylesheet.css">
 </head>
-
 <header>
     <nav id="navigation">
         <!-- <ul class="links" style = "float:left;">
@@ -56,8 +50,6 @@ $email = $_SESSION['uname']
 </header>
 
 <body>
-
-    <h2 style = "padding: 20px; padding-top: 50px;">Salisbury's Center for Student Achievement</h2>
     <?php
     // Making connection to DB
     $connection = new mysqli('localhost','jstoetzel1','jstoetzel1','SalisburySIDB');
@@ -91,8 +83,6 @@ $email = $_SESSION['uname']
     - $name     = the current SI's name (Jack Stoetzel)
     */
     
-    echo "<h2 style = 'padding: 20px;'>Welcome, ". $name . "</h2>";
-
     // Query for the SI's sessions (will be a list)
     $SessionQuery = "SELECT session_weekday, session_time, duration FROM Session WHERE SI_ID = " . $ID;
     $result = $connection->query($SessionQuery);
@@ -145,13 +135,46 @@ $email = $_SESSION['uname']
                 $SessionNum = 5;
             }
 
-            echo "<p>" . $SessionDay . " (" . date('m/d/Y',(strtotime ('-' .  ($DateNum - $SessionNum) . ' day' , strtotime ( date('m/d/Y'))))) . "): " . date('h:i a', strtotime($SessionTime)) . " - " . $EndTime . "</p>";
-
+           // echo "<p>" . $SessionDay . " (" . date('m/d/Y',(strtotime ('-' .  ($DateNum - $SessionNum) . ' day' , strtotime ( date('m/d/Y'))))) . "): " . date('h:i a', strtotime($SessionTime)) . " - " . $EndTime . "</p>";
         }
     }
     // Printing the list of students in the sections    
     // Need to get the Dpt, Num, Sec from Course matched with SI_ID
     // Then pull all students from the Enrolled in list who are in this class
     ?>
+<div class = "column" style="float:left">
+  <div class = "scroll_bar" style = "height: 675px;">
+  <h2>Select Attendance From Roster: </h2>
+  <form action method= "post">
+<?php
+    // Printing the list of students in the sections    
+    // Need to get the Dpt, Num, Sec from Course matched with SI_ID
+    // Then pull all students from the Enrolled in list who are in this class
+    $ClassQuery = "SELECT department, number, section FROM Course WHERE SI_ID = " . $ID;
+    //echo "<h3> " . $ClassQuery . "</h3>";
+    $CQResult = $connection->query($ClassQuery);
+    if($CQResult){
+        foreach($CQResult as $row1){
+            $EnrollQuery = "SELECT student_ID FROM Enrolled_In WHERE department = '" . $row1['department'] . "' AND course_number = " . $row1['number'] . " AND course_section = " . $row1['section'];
+            //echo "<h3> " . $EnrollQuery . "</h3>";
+            $EQResult = $connection->query($EnrollQuery);
+            if($EQResult){
+                foreach($EQResult as $row2){
+                    $StudentQuery = "SELECT name FROM Student WHERE ID = " . $row2['student_ID'];
+                    //echo "<h3> " . $StudentQuery . "</h3>";
+                    $SQResult = $connection->query($StudentQuery);
+                    if($SQResult){
+                        foreach($SQResult as $row3){
+                            echo "<p><input type = 'checkbox' name = 'Attendance' value = '" .$row2['student_ID']. "'> ".$row3['name'] . " (" . $row2['student_ID'] . ")</p>";
+                        }   
+                    }   
+                }   
+            }   
+        }   
+    } 
+?>
+    </form>
+   </div>
+  </div>
 </body>
 </html>
