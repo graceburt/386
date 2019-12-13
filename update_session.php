@@ -57,11 +57,6 @@ if (!isset($_SESSION['admin']))
 </nav>
 
 
-</header>
-
-<body style = "padding: 70px;">
-<div class = 'text_column' style = 'float:right; width: 45%;  margin-left:5%;'>
-
 <?php
  	if(isset($_POST["session_to_upd"]))
 	{
@@ -78,6 +73,11 @@ if (!isset($_SESSION['admin']))
 
 	}	
 ?>
+
+</header>
+
+<body style = "padding: 70px;">
+<div class = 'text_column' style = 'float:right; width: 45%;  margin-left:5%;'>
 
 
 <div class = 'column' style = 'text-align:center; width: 45%; width: 100%;'>
