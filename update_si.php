@@ -128,8 +128,8 @@ if (isset($_SESSION['add-si-id']))
   </form>
 </div>
 
- <div class = "column" style = 'width: 100%; float:left; height:400px; text-align:center'> 
- 	<div class = "scroll_bar">
+ <div class = "column" style = 'width: 100%; float:left; height:600px; text-align:center; overflow: hidden;'> 
+ 	<div class = "scroll_bar" style = "height: 600px;">
 
 	<h3>Choose an SI </h3>
 		<form action = "#" name=postlink method ='post'>

@@ -78,7 +78,7 @@ body{
   .scroll_bar{
     overflow: auto;
     padding: 10px;
-    height: 700px;
+    height: 675px;
   }
 	/* Clear floats after the columns */
 	.row:after {
