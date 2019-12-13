@@ -21,10 +21,6 @@ $email = $_SESSION['uname']
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto:300,400&display=swap" rel="stylesheet">
      <link rel ="stylesheet" href="stylemenu.css">
      <link rel ="stylesheet" href="stylesheet.css">
-
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <header>
     <nav id="navigation">
@@ -86,18 +82,6 @@ $email = $_SESSION['uname']
     - $ID       = the current SI's ID number (1000003)
     - $name     = the current SI's name (Jack Stoetzel)
     */
-?>
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">EX</a></li>
-      <li><a href="#">EX</a></li>
-      <li><a href="#">EX</a></li>
-    </ul>
-  </div>
-
-  <?php
     
     // Query for the SI's sessions (will be a list)
     $SessionQuery = "SELECT session_weekday, session_time, duration FROM Session WHERE SI_ID = " . $ID;
