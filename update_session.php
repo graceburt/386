@@ -80,7 +80,7 @@ if (!isset($_SESSION['admin']))
 <div class = 'text_column' style = 'float:right; width: 45%;  margin-left:5%;'>
 
 
-<div class = 'column' style = 'text-align:center; width: 45%; width: 100%;'>
+<div class = 'column' style = 'text-align:center; width: 45%; height: 400px;'>
 <div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
 <?php
 
@@ -161,7 +161,162 @@ else
 </form>
 </div>
 </div>
+
+<div class = 'column' style='text-align:center; height: auto; width:100%;' >
+<div class = 'colContent'>
+<form action = '#' name = posttime method ='post'>
+<?php  
+if (isset($_POST["group3"]))
+{
+	$_SESSION["time"] = $_POST["group3"];
+}
+if (isset($_POST["ampm"]))
+{
+	$_SESSION["ampm"]=$_POST["ampm"];
+}
+if(isset($_POST['half']))
+{
+	$_SESSION['half']=$_POST['half'];
+}
+echo'
+  <input type="radio" id="1oclk" class="time" name="group3" onclick="this.form.submit()" value ="1"';
+ if($_SESSION['time'] =='1')
+@@ -313,16 +254,152 @@ function submitPostLink();
+?>
+</form>
 </div>
+<div class="time-selector" style = " width: 100%; height:75px;">
+<form action ="#" name = postampm method = 'post' style ="width:45%; float:right; margin-right:10px; margin-bottom:0; height:50px;" >
+<?php
+ echo'
+ <input type = "radio" id="am" class ="time" name ="ampm" onclick="this.form.submit()" value="am"';
+ if($_SESSION['ampm']=='am')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="am">am</label>
+ <input type = "radio" id="pm" class ="time" name ="ampm" onclick="this.form.submit()" value="pm"';
+ if($_SESSION['ampm']=='pm')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="pm">pm</label>';
+?>
+</form>
+<form action ="#" name = post30 method = 'post' style ="width:45%; float:left; margin-right:10px;height:50px;" >
+<?php
+ echo'
+ <input type = "radio" id="half" class ="time" name ="half" onclick="this.form.submit()" value="half"';
+ if($_SESSION['half']=='half')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="half">:30</label>
+ <input type = "radio" id="nothalf" class ="time" name ="half" onclick="this.form.submit()" value="nothalf"';
+ if($_SESSION['half']=='nothalf')
+ {
+	echo " checked ";
+ }
+ echo ' />
+ <label for="nothalf">:00</label>';
+?>
+</div>
+</div>
+<?php
+ 	if(isset($_POST["session_to_upd"]))
+	{
+		$_SESSION['ses_to_up']=$_POST["session_to_upd"];
+	}
+	if(isset($_POST["updateSession"]))
+	{
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$updatequery = "update Session set session_time = '".$_SESSION['date']."', session_weekday = '".$_SESSION['day']."' where SI_ID = ".$_SESSION['add-si-id']." and session_weekday = '".$_SESSION['ses_to_up']."'";
+	$aq = mysqli_query($connection, $updatequery);
+	}	
+?>
+<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
+<div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
+<?php
+ if (isset($_POST['choose-si']))
+ {
+	$_SESSION['add-si-id'] = $_POST['choose-si'];
+ }
+if (isset($_SESSION['add-si-id']))
+{
+	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
+	if($connection->connect_error) {
+		die('Failed to Connect: '.$connection->connect_error);
+	}
+	$namequery = "select name from Student where ID = ".$_SESSION['add-si-id'];
+	$nr = mysqli_query($connection, $namequery);
+	$name_row = mysqli_fetch_array($nr); 
+	echo "<h3> Choose a session to update</h3>";
+	//echo "<h3>".$name_row['name']." 's Sessions </h3>";
+	$query = "select session_weekday,session_time from Session where SI_ID = ".$_SESSION['add-si-id'];
+	
+	$r = mysqli_query($connection, $query);
+echo'<form action="#" name=postsession method ="post">';
+	while($row = mysqli_fetch_array($r))
+	{
+	if ($_SESSION['ses_to_up'] == $row['session_weekday'])
+	{
+	if(isset($_SESSION['day']) and isset($_SESSION['time'])and isset($_SESSION['half']) and isset($_SESSION['ampm']))
+	{
+		if($_SESSION['ampm']=='pm')
+		{
+			$t = $_SESSION['time']+12;
+		}
+		else
+		{
+			$t = $_SESSION['time'];
+		}
+		if($t == 12 or $t==24)
+		{
+			$t = $t - 12;
+		}	
+		if($_SESSION['half']=='nothalf')
+		{
+			$_SESSION['date'] = $t.':00:00';
+		}
+		else
+		{
+			$_SESSION['date'] = $t.':30:00';
+		}
+		echo"<input type = 'radio' checked id = '".$row['session_weekday']."' name = 'session_to_upd' onclick='this.form.submit()' value = '".$row['session_weekday']."'><label for ='".$row['session_weekday']."' style = 'color:#800000; font-weight:bold;'>".$_SESSION['day']." at ".date('h:i a',strtotime($_SESSION['date']))."</label></br>";
+		echo "[old time: ".$row['session_weekday']." at  ". date('h:i a ', strtotime($row['session_time']))."]";
+	}
+	else
+	{
+		echo "<input type = 'radio' checked id = '".$row['session_weekday']."' name = 'session_to_upd' onclick='this.form.submit()' value = '".$row['session_weekday']."'><label for ='".$row['session_weekday']."'>".$row['session_weekday']." at  ". date('h:i a ', strtotime($row['session_time']))."</label>";
+	}
+	}
+	else{	
+		echo "<input type = 'radio' id = '".$row['session_weekday']."' name = 'session_to_upd' onclick='this.form.submit()' value = '".$row['session_weekday']."'><label for ='".$row['session_weekday']."'>".$row['session_weekday']." at  ". date('h:i a ', strtotime($row['session_time']))."</label>";
+	}
+		echo'</br>';	
+	}
+	//echo $_SESSION['sil-id'];
+	if(isset($_SESSION['ses_to_up']) and isset($_SESSION['day']) and isset($_SESSION['time'])and isset($_SESSION['half']) and isset($_SESSION['ampm']))
+	{
+		echo"<button class ='button1' name = 'updateSession' value = 'update'>Update Session</button>";
+	}
+	echo '</form>';
+}
+else
+{
+	echo"<h3> Choose an SI to view their current sessions</h3>";
+}
+?>
+</form>
+</div>
+</div>
+
 <div class ='text_column' style = "align:left; width:45%;">
 
 <div id="cover">
