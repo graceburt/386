@@ -83,7 +83,7 @@ if (!isset($_SESSION['admin']))
 ?>
 
 
-<div class = 'column' style = 'text-align:center; width: 45%; height:450px; width: 100%; overflow: hidden;'>
+<div class = 'column' style = 'text-align:center; width: 45%; width: 100%; overflow: hidden;'>
 <div class = "scroll_bar" style = "height: 700px;"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
 <?php
 
