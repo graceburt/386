@@ -102,6 +102,7 @@ if (isset($_SESSION['add-si-id']))
 		echo "<p><input type = 'checkbox' name = 'courses[]' value = '".$rows['department']."'>Department: ".$rows['department']." Course: ".$rows['number']." Section: ".$rows['section']." </p>";
 
 	}
+	echo ' <input type = "submit" value = "Delete" id ="delete" name = "delete">';
 
 
 
