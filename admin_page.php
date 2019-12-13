@@ -169,7 +169,7 @@ if (!isset($_SESSION['admin']))
 
 		while($sub_row=mysqli_fetch_array($sub_r))
 		{
-			echo"<form action = 'session_page.php' name=postlink method = 'post'>
+			echo"<form action = '' name=postlink method = 'post'>
 				<input type = 'hidden' name='s-date' value=".$sub_row['session_date'].">
 			<input type = 'hidden' name='si-name' value=".$row['name'].">
 				<input type = 'hidden' name='s-time' value=".$sub_row['session_time'].">";
@@ -279,7 +279,7 @@ if (!isset($_SESSION['admin']))
 
 		while($sub_row=mysqli_fetch_array($sub_r))
 		{
-			echo"<form action = 'session_page.php' name=postlink method = 'post'>
+			echo"<form action = '' name=postlink method = 'post'>
 				<input type = 'hidden' name='s-date' value=".$sub_row['session_date'].">
 			<input type = 'hidden' name='si-name' value=".$row['name'].">
 				<input type = 'hidden' name='s-time' value=".$sub_row['session_time'].">";
