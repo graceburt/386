@@ -99,7 +99,7 @@ if (isset($_SESSION['add-si-id']))
 	$result = mysqli_query($connection, $coursequery);
 	while($rows = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 
-		echo "<p><input type = 'checkbox' name = 'courses[]' value = '".$rows['SI_ID']."'>Department: ".$rows['department']." Course: ".$rows['number']." Section: ".$rows['section']." (ID: ".$row['SI_ID'].")</p>";
+		echo "<p><input type = 'checkbox' name = 'courses[]' value = '".$rows['section']."','".$rows['number']."'   > Department: ".$rows['department']." Course: ".$rows['number']." Section: ".$rows['section']."</p>";
 
 	}
 	echo ' <input type = "submit" value = "Delete" id ="delete" name = "delete">';
@@ -113,13 +113,12 @@ if (isset($_SESSION['add-si-id']))
 	$connnection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
 	//Php code to be included
 
-	$student=$_POST['courses'];
+        $student=$_POST['courses']; 
 	//echo "'.$Student[0].'";
-	
+	//print($student);
+	$id = $_SESSION['add-si-id'];
 	$ids = "(".join(",",$student).")";
-	$newvalue = 'none';
-
-	$siquery = "UPDATE Courses SET SI_ID = '".$newvalue."'   WHERE SI_ID IN ".$ids.";";
+	$siquery = "UPDATE Course SET SI_ID = NULL WHERE SI_ID = '".$id."'  AND section IN ".$ids.";";
         //$coquery  = "UPDATE Courses SET Student_ID = "" WHERE Student_ID IN = ".$ids.";";
 	//print($siquery);
 	$result = mysqli_query($connection, $siquery);
@@ -130,23 +129,10 @@ if (isset($_SESSION['add-si-id']))
        //print_r($result);
 
 	if(isset($_POST['delete'])){
-	$_SESSION['delete'];
-        //echo "$student[0]";  
-	if(empty($student)){
-		echo("You didn't select any SI's to remove.");
-	}else{
-		$N = count($student);
-		//echo("You want to remove the following SIs \n");
-		for($i=0; $i < $N; $i++){
-			$id = $student[$i];
-			echo $id;
-			if($result){
-				echo " Removed from SI successfully\n";
-			}/*
-			if($result1){
-				echo "successs"
-			}*/
-               }
+		//print($student[0]);
+	$_SESSION['deletecourse'];
+        if($result){
+		//echo "courses removed from the SI";
 	}
 	}
  
