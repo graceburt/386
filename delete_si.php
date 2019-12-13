@@ -139,10 +139,11 @@ echo' <div class = "column" style="width:100%; height:300px;">
 	$ids = "(".join(",",$student).")";
 
 	$siquery = "DELETE FROM Supplemental_Instruction_Leader WHERE Student_ID IN ".$ids.";";
-        //$coursequery  = "UPDATE Courses SET Student_ID = "" WHERE Student_ID IN = ".$ids.";";
+        //$coquery  = "UPDATE Courses SET Student_ID = "" WHERE Student_ID IN = ".$ids.";";
 	//print($siquery);
 	$result = mysqli_query($connection, $siquery);
 	//$result1 = mysqli_query($connection, $coursequery);
+
 
 	//echo ("LKSJDLJF");
        //print_r($result);
