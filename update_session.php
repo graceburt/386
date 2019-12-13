@@ -81,7 +81,8 @@ if (!isset($_SESSION['admin']))
 
 
 <div class = 'column' style = 'text-align:center; width: 45%; height: 400px;'>
-<div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
+<div class = "colContent">
+	<form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
 <?php
 
  if (isset($_POST['choose-si']))
@@ -225,6 +226,7 @@ echo'
 ?>
 </div>
 </div>
+</form>
 <?php
  	if(isset($_POST["session_to_upd"]))
 	{
@@ -331,6 +333,7 @@ else
       </div>
     </div>
   </form>
+</div>
 </div>
 
  <div class = "column" style = 'width: 100%; float:left; padding: 20px; height:400px; text-align:center; overflow: hidden;'> 
