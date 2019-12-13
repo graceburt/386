@@ -117,7 +117,7 @@ if (!isset($_SESSION['admin']))
 </div>
 
 <div class = 'text_column' style = 'float:right; width: 45%; margin:0; '>
-<div class = 'column' style = 'text-align:center; width: 45%; height:320px; width: 100%;'>
+<div class = 'column' style = 'text-align:center; width: 45%; height:auto; width: 100%;'>
 <div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
 <?php
 
