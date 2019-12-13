@@ -69,10 +69,12 @@ if (!isset($_SESSION['admin']))
 		die('Failed to Connect: '.$connection->connect_error);
 	}
 	$weekarr = $_POST['session-to-del'];
-	$days = "(".join(",",$weekarr).")";
-	$delquery = "delete from Session where SI_ID = '".$_SESSION['sil-id']."' and session_weekday in ".$days.";";
-	print($delquery);
-	$dq = mysqli_query($connection, $delquery);
+	for ($i=0; $i<count($weekarr); $i++)
+	{
+		$days = $weekarr[$i];// "(".join(",'",$weekarr)."')";
+		$delquery = "delete from Session where SI_ID = '".$_SESSION['sil-id']."' and session_weekday ='".$days."'";
+		$dq = mysqli_query($connection, $delquery);
+	}
 	
 	}	
 ?>
