@@ -94,13 +94,15 @@ if (!isset($_SESSION['admin']))
 if (isset($_SESSION['add-si-id']))
 {
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
-	$coursequery = "SELECT department, number, section FROM Course WHERE SI_ID = '".$_SESSION['add-si-id']."'";
-	$result = $connection ->query($coursequery);
-	$rows = mysqli_fetch_array($rows);
-	while($rows){
-		echo $rows['course'];
+	$coursequery = "SELECT department, number, section FROM Course WHERE SI_ID = '".$_SESSION['add-si-id']."';";
+	//print($coursequery);
+	$result = mysqli_query($connection, $coursequery);
+	while($rows = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+
+		echo "<p><input type = 'checkbox' name = 'courses[]' value = '".$rows['department']."'>Department: ".$rows['department']." Course: ".$rows['number']." Section: ".$rows['section']." </p>";
 
 	}
+
 
 
 }
