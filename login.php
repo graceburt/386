@@ -90,8 +90,8 @@ if(isset($_POST['loginbutton'])){
 
 
 		else{
-			echo "Invalid username or password";
-			echo $count1;
+			#echo "Invalid username or password";
+			#echo $count1;
 		}
 	}
 }
