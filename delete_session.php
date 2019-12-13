@@ -68,7 +68,10 @@ if (!isset($_SESSION['admin']))
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
 	}
-	$delquery = "delete from Session where SI_ID = '".$_SESSION['sil-id']."' and session_weekday = '".$_POST['session-to-del']."'";
+	$weekarr = $_POST['session-to-del'];
+	$days = "(".join(",",$weekarr).")";
+	$delquery = "delete from Session where SI_ID = '".$_SESSION['sil-id']."' and session_weekday in ".$days.";";
+	print($delquery);
 	$dq = mysqli_query($connection, $delquery);
 	
 	}	
@@ -92,7 +95,7 @@ if (isset($_SESSION['sil-id']))
 	$r = mysqli_query($connection, $query);
 	while($row = mysqli_fetch_array($r))
 	{
-		echo "<p><input type = 'checkbox' name = 'session-to-del' value = '".$row['session_weekday']."'>".$row['session_weekday']." at  ".date('h:i a',strtotime($row['session_time']))."</p>";
+		echo "<p><input type = 'checkbox' name = 'session-to-del[]' value = '".$row['session_weekday']."'>".$row['session_weekday']." at  ".date('h:i a',strtotime($row['session_time']))."</p>";
 	}
 	//echo $_SESSION['sil-id'];
 		echo"<button class ='button1' name = 'deleteSession' value = 'del'>Delete Session</button>";
