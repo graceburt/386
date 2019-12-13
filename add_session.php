@@ -80,7 +80,7 @@ if(isset($_POST['group']))
 <?php
 	if(isset($_POST["addSession"]))
 	{
-		echo $_SESSION['date'],"  ".$_SESSION['add-si-id']."  ".$_SESSION['day'];
+#		echo $_SESSION['date'],"  ".$_SESSION['add-si-id']."  ".$_SESSION['day'];
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
 	if($connection->connect_error) {
 		die('Failed to Connect: '.$connection->connect_error);
