@@ -59,13 +59,13 @@ if(isset($_POST['loginbutton'])){
 	if($uname !='' && $pword!=''){
 		$hashpword = hash('ripemd160',$pword);
 		//write query to check if user exists
-		$sql_query = "SELECT COUNT(*) as cnt FROM Admin where username = '".$uname."' AND password ='".$pword."'";
+		$sql_query = "SELECT COUNT(*) as cnt FROM Admin where username = '".$uname."' AND password ='".$hashpword."'";
 		$result = mysqli_query($con, $sql_query);
 		$row = mysqli_fetch_array($result);
 
 		$count = $row['cnt'];
 
-		$sql_query1 = "SELECT COUNT(*) as cnt1 FROM Student WHERE password = '".$pword."' AND  email = '".$uname."'";
+		$sql_query1 = "SELECT COUNT(*) as cnt1 FROM Student WHERE password = '".$hashpword."' AND  email = '".$uname."'";
 		$result1 = mysqli_query($con, $sql_query1);
 		$row1 = mysqli_fetch_array($result1);
 
