@@ -68,6 +68,14 @@ if(isset($_POST['half']))
 {
 	$_SESSION['half']=$_POST['half'];
 }
+ if (isset($_POST['choose-si']))
+ {
+	$_SESSION['add-si-id'] = $_POST['choose-si'];
+ }
+if(isset($_POST['group']))
+{
+	$_SESSION['day'] = $_POST['group'];
+}	
 ?>
 </header>
 
@@ -133,10 +141,6 @@ if(isset($_POST['half']))
 <div class = "colContent"><form action ="#" name = "addsession"  method = 'post' style ="width:100%; height:100%;" >
 <?php
 
- if (isset($_POST['choose-si']))
- {
-	$_SESSION['add-si-id'] = $_POST['choose-si'];
- }
 if (isset($_SESSION['add-si-id']))
 {
 	$connection = @mysqli_connect('localhost','swarman2','swarman2','SalisburySIDB');
@@ -200,10 +204,6 @@ else
 
 <form action = '#' name = postday method = 'post' style = "padding-top:10px; height:60px;">
 <?php
-if(isset($_POST['group']))
-{
-	$_SESSION['day'] = $_POST['group'];
-}	
 echo'
   <input type="radio" id="weekday-mon" class="weekday" name="group" onclick="this.form.submit()" value = "Monday"';
 if($_SESSION["day"] == 'Monday')
