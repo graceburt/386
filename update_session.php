@@ -225,7 +225,6 @@ echo'
 ?>
 </div>
 </div>
-  </div>
 <?php
  	if(isset($_POST["session_to_upd"]))
 	{
@@ -315,7 +314,6 @@ else
 }
 ?>
 </form>
-</div>
 </div>
 </div>
 
