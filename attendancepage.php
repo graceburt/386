@@ -21,6 +21,13 @@ $email = $_SESSION['uname']
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Roboto:300,400&display=swap" rel="stylesheet">
      <link rel ="stylesheet" href="stylemenu.css">
      <link rel ="stylesheet" href="stylesheet.css">
+     <link rel = "stylesheet" href = "stylesheet.css">
+     <script language=javascript>
+    function submitPostLink()
+    {
+    document.postlink.submit();
+    }
+  </script>
 </head>
 <header>
     <nav id="navigation">
@@ -76,13 +83,62 @@ $email = $_SESSION['uname']
         }
         $result -> free_result();
     }
-
+    echo "<h2>Welcome Back, ". $name . " </h2>";
     /*  NOTES FOR FRONT END
     - $email    = the current SI's email (jstoetzel@gulls.salisbury.edu)
     - $ID       = the current SI's ID number (1000003)
     - $name     = the current SI's name (Jack Stoetzel)
     */
     
+    // Query for the SI's sessions (will be a list)
+           // echo "<p>" . $SessionDay . " (" . date('m/d/Y',(strtotime ('-' .  ($DateNum - $SessionNum) . ' day' , strtotime ( date('m/d/Y'))))) . "): " . date('h:i a', strtotime($SessionTime)) . " - " . $EndTime . "</p>";
+    // Printing the list of students in the sections    
+    // Need to get the Dpt, Num, Sec from Course matched with SI_ID
+    // Then pull all students from the Enrolled in list who are in this class
+    ?>
+<div class = "column" style="width: 100%; float:left; width: 45%; overflow: hidden">
+  <div class = "scroll_bar">
+  <h2>Select Attendance From Roster: </h2>
+  <form action method= "post">
+<?php
+    // Printing the list of students in the sections    
+    // Need to get the Dpt, Num, Sec from Course matched with SI_ID
+    // Then pull all students from the Enrolled in list who are in this class
+    $ClassQuery = "SELECT department, number, section FROM Course WHERE SI_ID = " . $ID;
+    //echo "<h3> " . $ClassQuery . "</h3>";
+    $CQResult = $connection->query($ClassQuery);
+    if($CQResult){
+        foreach($CQResult as $row1){
+            $EnrollQuery = "SELECT student_ID FROM Enrolled_In WHERE department = '" . $row1['department'] . "' AND course_number = " . $row1['number'] . " AND course_section = " . $row1['section'];
+            //echo "<h3> " . $EnrollQuery . "</h3>";
+            $EQResult = $connection->query($EnrollQuery);
+            if($EQResult){
+                foreach($EQResult as $row2){
+                    $StudentQuery = "SELECT name FROM Student WHERE ID = " . $row2['student_ID'];
+                    //echo "<h3> " . $StudentQuery . "</h3>";
+                    $SQResult = $connection->query($StudentQuery);
+                    if($SQResult){
+                        foreach($SQResult as $row3){
+                            //   <p><input> type = 'checkbox' name = 'Attendance' value = '1000004'>Stephanie Warman (1000004)</p>"
+                            echo "<p><input type = 'checkbox' name = 'Attendance' value = '" .$row2['student_ID']. "'> ".$row3['name'] . " (" . $row2['student_ID'] . ")</p>";
+                        }   
+                    }   
+                }   
+            }   
+        }   
+    } 
+?>
+
+    </form>
+   </div>
+  </div>
+<!--<div class = 'text_column' style = 'float:right;width: auto;  margin: 0;'>-->
+ <div class = "column" style = 'float:right; height: 400px; overflow: hidden;'>
+  <div class = "scroll_bar" style = "height: 600px;">
+
+  <h3>Select This Week's Session:  </h3>
+    <form action = "#" name=postlink method ='post'>
+       <?php
     // Query for the SI's sessions (will be a list)
     $SessionQuery = "SELECT session_weekday, session_time, duration FROM Session WHERE SI_ID = " . $ID;
     $result = $connection->query($SessionQuery);
@@ -134,53 +190,26 @@ $email = $_SESSION['uname']
             else if($SessionDay == "Friday"){
                 $SessionNum = 5;
             }
-
-           // echo "<p>" . $SessionDay . " (" . date('m/d/Y',(strtotime ('-' .  ($DateNum - $SessionNum) . ' day' , strtotime ( date('m/d/Y'))))) . "): " . date('h:i a', strtotime($SessionTime)) . " - " . $EndTime . "</p>";
+            echo "<p><input type = 'radio' name = 'Attendance' value = > ".$SessionDay . " (" . date('m/d/Y',(strtotime ('-' .  ($DateNum - $SessionNum) . ' day' , strtotime ( date('m/d/Y'))))) . "): " . date('h:i a', strtotime($SessionTime)) . "</p>";
+           //echo "<p> input type = radio id = 'button' name = 'session-time' value = '" . $SessionDay . "'>  (" . date('m/d/Y',(strtotime ('-' .  ($DateNum - $SessionNum) . ' day' , strtotime ( date('m/d/Y'))))) . "): " . date('h:i a', strtotime($SessionTime)) . " - " . $EndTime . "</p>";
+  
+           //echo "<p><input type = radio id = 'button' name = 'select-time' oneclick='this.form.submit()' value = " . $SessionDay . " (" . date('m/d/Y',(strtotime ('-' .  ($DateNum - $SessionNum) . ' day' , strtotime ( date('m/d/Y'))))) . "): " . date('h:i a', strtotime($SessionTime)) . " - " . $EndTime . "</p>";
         }
-    }
-    // Printing the list of students in the sections    
-    // Need to get the Dpt, Num, Sec from Course matched with SI_ID
-    // Then pull all students from the Enrolled in list who are in this class
-    ?>
-<div class = "column" style="float:left">
-  <div class = "scroll_bar" style = "height: 675px;">
-  <h2>Select Attendance From Roster: </h2>
-  <form action method= "post">
-<?php
-    // Printing the list of students in the sections    
-    // Need to get the Dpt, Num, Sec from Course matched with SI_ID
-    // Then pull all students from the Enrolled in list who are in this class
-    $ClassQuery = "SELECT department, number, section FROM Course WHERE SI_ID = " . $ID;
-    //echo "<h3> " . $ClassQuery . "</h3>";
-    $CQResult = $connection->query($ClassQuery);
-    if($CQResult){
-        foreach($CQResult as $row1){
-            $EnrollQuery = "SELECT student_ID FROM Enrolled_In WHERE department = '" . $row1['department'] . "' AND course_number = " . $row1['number'] . " AND course_section = " . $row1['section'];
-            //echo "<h3> " . $EnrollQuery . "</h3>";
-            $EQResult = $connection->query($EnrollQuery);
-            if($EQResult){
-                foreach($EQResult as $row2){
-                    $StudentQuery = "SELECT name FROM Student WHERE ID = " . $row2['student_ID'];
-                    //echo "<h3> " . $StudentQuery . "</h3>";
-                    $SQResult = $connection->query($StudentQuery);
-                    if($SQResult){
-                        foreach($SQResult as $row3){
-                            echo "<p><input type = 'checkbox' name = 'Attendance' value = '" .$row2['student_ID']. "'> ".$row3['name'] . " (" . $row2['student_ID'] . ")</p>";
-                        }   
-                    }   
-                }   
-            }   
-        }   
-    } 
-?>
+      }
+  ?>
+  </form>
 
-    </form>
-   </div>
   </div>
+</div>
+<div class = "column" style = 'float:right; height: auto;'>
+  <div class = "scroll_bar" style = "height: 600px;">
 
-
-
-
+  <h3>Finalize Attendance:  </h3>
+    <form action = "#" name=postlink method ='post'>
+       <?php
+        ?>
+  </div?
+</div>
 
 </body>
 </html>
